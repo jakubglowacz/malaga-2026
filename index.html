@@ -310,13 +310,24 @@ th:last-child, td:last-child{ padding-right:0; }
 
 /* ---------- checklisty ---------- */
 .checks{ list-style:none; padding:0; margin:1.2rem 0 0; display:grid; gap:.1rem; max-width: 72ch; }
-.checks li{ display:grid; grid-template-columns: 1.35rem 1fr; gap:.6rem; padding:.42rem 0; align-items:start; font-size:.97rem; color: var(--ink-2); line-height:1.5; }
-.checks li::before{
-  content:""; width:14px; height:14px; margin-top:.32rem; border:1.5px solid var(--muted); border-radius:2px; display:block;
+/* Element listy MUSI zostać zwykłym blokiem, nie gridem.
+   W gridzie tekst następujący po <strong> tworzy anonimowy element grida,
+   ląduje w wąskiej kolumnie kwadracika i łamie się po jednym słowie. */
+.checks li{
+  position: relative;
+  padding: .42rem 0 .42rem 1.95rem;
+  font-size:.97rem; color: var(--ink-2); line-height:1.5;
+  min-width: 0;
 }
-.cols2{ columns: 2; column-gap: 2.5rem; }
-.cols2 > *{ break-inside: avoid; }
-@media (max-width: 720px){ .cols2{ columns: 1; } }
+.checks li::before{
+  content:""; position:absolute; left:0; top:.72rem;
+  width:14px; height:14px; border:1.5px solid var(--muted); border-radius:2px;
+}
+/* Dwie kolumny robimy gridem, nie `columns`. Multicol nie potrafi wyliczyć
+   szerokości dla elementów listy, które same są gridami — tekst schodził
+   wtedy do jednego słowa na linię. */
+.checks.cols2{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: .1rem 2.5rem; }
+@media (max-width: 720px){ .checks.cols2{ grid-template-columns: minmax(0,1fr); } }
 
 /* ---------- rozmówki ---------- */
 .phrases{ display:grid; grid-template-columns: repeat(auto-fit,minmax(270px,1fr)); gap:.1rem 2.2rem; margin-top:1.5rem; }
@@ -1112,6 +1123,7 @@ th:last-child, td:last-child{ padding-right:0; }
       <div class="acard" style="margin-top:1rem">
         <h4>Warunki anulowania</h4>
         <p>Rezerwacja jest <strong>bezzwrotna</strong>. Przy odwołaniu, zmianie lub niepojawieniu się obiekt pobiera pełną kwotę. Zwrot kaucji następuje do siedmiu dni po wymeldowaniu, po sprawdzeniu stanu lokalu.</p>
+        <p style="margin-top:.5rem">W razie choroby albo odwołanego lotu jedyną drogą do odzyskania tych pieniędzy jest <strong>ubezpieczenie od rezygnacji</strong>. Jeśli go nie ma, warto rozważyć dokupienie, dopóki jeszcze można.</p>
       </div>
       <div class="acard teal" style="margin-top:1rem">
         <h4>Zapiszcie offline</h4>
@@ -1272,10 +1284,6 @@ th:last-child, td:last-child{ padding-right:0; }
     <li><strong>Gniazdka</strong> są takie same jak w Polsce, adapter niepotrzebny</li>
   </ul>
 
-  <div class="note warn">
-    <h4>Rezerwacja jest bezzwrotna</h4>
-    <p>Apartament nie podlega zwrotowi przy odwołaniu ani zmianie. W razie choroby albo odwołanego lotu jedyną drogą do odzyskania pieniędzy jest ubezpieczenie od rezygnacji — jeśli go nie ma, warto rozważyć dokupienie, dopóki jeszcze można.</p>
-  </div>
 </section>
 
 <!-- ===================== PRAKTYCZNIE 9: PAKOWANIE ===================== -->
