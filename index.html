@@ -173,19 +173,20 @@ a{ color: var(--accent); text-underline-offset: .18em; text-decoration-thickness
 }
 
 /* ---------- kalendarz ---------- */
-.cal{ display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 1.6rem; }
+.cal{ display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 6px; margin-top: 1.6rem; }
 .cal-cell{
   background: var(--card); border: 1px solid var(--rule-soft);
   border-top: 3px solid var(--rule); padding: .7rem .75rem 1.1rem;
   min-height: 132px; display:flex; flex-direction:column; gap:.15rem;
 }
-.cal-cell.c1{ border-top-color: var(--teal); }
+.cal-cell.c1{ border-top-color: var(--gold); }
 .cal-cell.c2{ border-top-color: var(--accent); }
+.cal-cell.c3{ border-top-color: var(--teal); }
 .cal-num{ font-family: var(--f-display); font-weight: 800; font-size: 1.5rem; letter-spacing:-.03em; line-height:1; }
 .cal-dow{ font-family: var(--f-display); font-size:.6rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color: var(--muted); }
 .cal-lab{ margin-top:auto; font-family: var(--f-display); font-size:.76rem; font-weight:600; line-height:1.25; color: var(--ink-2); }
 @media (max-width: 700px){
-  .cal{ grid-template-columns: repeat(2,1fr); }
+  .cal{ grid-template-columns: repeat(2, minmax(0,1fr)); }
   .cal-cell{ min-height: 104px; }
 }
 .legend{ display:flex; flex-wrap:wrap; gap:.5rem 1.3rem; margin-top:1rem; font-family:var(--f-display); font-size:.74rem; color: var(--ink-2); }
@@ -299,6 +300,7 @@ th:last-child, td:last-child{ padding-right:0; }
 .acard{ background: var(--card); border:1px solid var(--rule-soft); padding: .95rem 1rem 1.05rem; }
 .acard h4{ color: var(--accent); margin-bottom:.5rem; }
 .acard.teal h4{ color: var(--teal); }
+.acard.warn-card{ border-left: 3px solid var(--accent); }
 .acard ul{ margin:0; padding-left: 1.05rem; }
 .acard li{ font-size:.9rem; color: var(--ink-2); line-height:1.45; margin-bottom:.35rem; }
 .acard li:last-child{ margin-bottom:0; }
@@ -424,7 +426,10 @@ th:last-child, td:last-child{ padding-right:0; }
   .pagefoot{ display:none; }
   .daygrid{ grid-template-columns: 1fr 250px; }
   .mapwrap{ grid-template-columns: 1.3fr 1fr; }
-  .cal{ grid-template-columns: repeat(5,1fr); }
+  .cal{ grid-template-columns: repeat(5, minmax(0,1fr)); }
+  .cal-dow{ font-size:.5rem; letter-spacing:.07em; }
+  .cal-cell{ padding:.55rem .5rem .8rem; }
+  .cal-lab{ font-size:.66rem; }
   .tiles, .note, .acard, .tl-i, .row, .ph, tr, .cal-cell{ break-inside: avoid; }
   a{ color: var(--accent); text-decoration:none; }
   .cover, .chapter, .finale, .tag.now, .pin b{ -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -488,7 +493,7 @@ th:last-child, td:last-child{ padding-right:0; }
   <div class="cover-in">
     <p class="eyebrow">Informator wyprawowy</p>
     <h1>Málaga,<br><em>pięć dni</em></h1>
-    <p class="lead">Baza na Victorii, kanion nad rzeką Guadalhorce i białe miasteczko nad morzem. Wrzesień, kiedy woda ma jeszcze dwadzieścia trzy stopnie.</p>
+    <p class="lead">Baza na Victorii, dwa kaniony w jedną sobotę i białe miasteczko nad morzem. Wrzesień, kiedy woda ma jeszcze dwadzieścia trzy stopnie.</p>
     <div class="cover-foot">
       <span><b>17–21.09.2026</b></span>
       <span>Jakub &amp; +1</span>
@@ -501,7 +506,7 @@ th:last-child, td:last-child{ padding-right:0; }
 <section class="sheet" id="czeka">
   <p class="eyebrow">Málaga · 17–21.09.2026</p>
   <h1>Co Was czeka</h1>
-  <p class="lead">Pięć dni, jedna baza i zero przeprowadzek. Miasto zwiedzacie pieszo, dwa razy wyjeżdżacie autem i ani razu nie pakujecie walizki w środku wyjazdu.</p>
+  <p class="lead">Pięć dni, jedna baza i samochód pod ręką. Miasto bierzecie w piątek, kiedy jest puste, sobotę oddajecie skale, a niedzielę morzu. Ani razu nie pakujecie walizki w środku wyjazdu.</p>
 
   <div class="rows">
     <div class="row">
@@ -511,23 +516,28 @@ th:last-child, td:last-child{ padding-right:0; }
     </div>
     <div class="row">
       <div class="row-k">18.09</div>
-      <div class="row-t">Caminito del Rey</div>
-      <p class="row-d">Kładki przypięte do ściany kanionu sto metrów nad rzeką. Siedem i pół kilometra w jedną stronę, wejście o 10:20 z oficjalnym przewodnikiem.</p>
-    </div>
-    <div class="row">
-      <div class="row-k">19.09</div>
       <div class="row-t">Alcazaba i dach katedry</div>
-      <p class="row-d">Mauretańska forteca, zamek na wzgórzu i wejście na dachy katedry o osiemnastej — kiedy słońce schodzi nad port.</p>
+      <p class="row-d">Mauretańska forteca, zamek na wzgórzu i chodzenie po sklepieniach katedry. Piątek, czyli dzień roboczy — bez weekendowych kolejek.</p>
     </div>
     <div class="row">
-      <div class="row-k">19.09</div>
+      <div class="row-k">18.09</div>
       <div class="row-t">Espeto w Pedregalejo</div>
       <p class="row-d">Sardynki nadziane na patyk i pieczone nad ogniskiem w łodzi wypełnionej piaskiem. Tylko na plaży, nigdzie indziej.</p>
     </div>
     <div class="row">
+      <div class="row-k">19.09</div>
+      <div class="row-t">Caminito del Rey</div>
+      <p class="row-d">Kładki przypięte do ściany kanionu sto metrów nad rzeką. Wejście 11:20 z przewodnikiem, bilety w kieszeni.</p>
+    </div>
+    <div class="row">
+      <div class="row-k">19.09</div>
+      <div class="row-t">Ronda o złotej godzinie</div>
+      <p class="row-d">Prosto z kanionu do miasta rozciętego drugim kanionem. Autokary odjeżdżają po siedemnastej — zostaje światło i pusty most.</p>
+    </div>
+    <div class="row">
       <div class="row-k">20.09</div>
       <div class="row-t">Frigiliana i klify Maro</div>
-      <p class="row-d">Najładniejsze białe miasteczko prowincji rano, kąpiel w zatoczce pod klifem po południu.</p>
+      <p class="row-d">Jaskinia ze stalaktytami, najładniejsze białe miasteczko prowincji i kąpiel w zatoczce pod klifem.</p>
     </div>
     <div class="row">
       <div class="row-k">21.09</div>
@@ -537,8 +547,13 @@ th:last-child, td:last-child{ padding-right:0; }
   </div>
 
   <div class="note sea">
-    <h4>Rytm: gęsto, wolno, gęsto, wolno</h4>
-    <p>Dni ciężkie i lekkie leżą na przemian. Po Caminito w piątek sobota jest miejska i wolna, po Frigilianie w niedzielę poniedziałek jest pusty. Żaden dzień nie zaczyna się przed ósmą — poza piątkiem, gdzie kanion nie zostawia wyboru.</p>
+    <h4>Dlaczego miasto wypada w piątek</h4>
+    <p>Bo to jedyny dzień roboczy, który macie w całości. Alcazaba, Picasso i katedra są wtedy wyraźnie luźniejsze niż w weekend, <strong>targ Atarazanas jest otwarty</strong> — w niedziele nie handluje — a wejścia na dachy katedry mają w dni robocze najwięcej terminów. Sobota i tak jest zajęta kanionem, więc miasto na spokojnie mieści się tylko tutaj.</p>
+  </div>
+
+  <div class="note">
+    <h4>Rytm: lekko, spokojnie, bardzo mocno, przyjemnie</h4>
+    <p>Sobota jest najcięższym dniem wyjazdu — kanion i Ronda w jednym ciągu, około czterystu kilometrów i dwanaście godzin na nogach. Dlatego niedziela, choć wypełniona, kończy się na plaży, a poniedziałek jest prawie pusty. Żaden poranek nie zaczyna się przed ósmą.</p>
   </div>
 </section>
 
@@ -636,29 +651,30 @@ th:last-child, td:last-child{ padding-right:0; }
 
   <div class="cal">
     <div class="cal-cell c1"><span class="cal-dow">Czwartek</span><span class="cal-num">17</span><span class="cal-lab">Lądowanie, sjesta,<br>pierwsze morze</span></div>
-    <div class="cal-cell c1"><span class="cal-dow">Piątek</span><span class="cal-num">18</span><span class="cal-lab">Caminito del Rey<br>10:20</span></div>
-    <div class="cal-cell c2"><span class="cal-dow">Sobota</span><span class="cal-num">19</span><span class="cal-lab">Alcazaba, katedra,<br>espeto</span></div>
-    <div class="cal-cell c2"><span class="cal-dow">Niedziela</span><span class="cal-num">20</span><span class="cal-lab">Frigiliana<br>i klify Maro</span></div>
-    <div class="cal-cell c2"><span class="cal-dow">Poniedziałek</span><span class="cal-num">21</span><span class="cal-lab">Ostatni dzień,<br>wylot 19:35</span></div>
+    <div class="cal-cell c1"><span class="cal-dow">Piątek</span><span class="cal-num">18</span><span class="cal-lab">Alcazaba, Picasso,<br>espeto</span></div>
+    <div class="cal-cell c2"><span class="cal-dow">Sobota</span><span class="cal-num">19</span><span class="cal-lab">Caminito 11:20<br>i Ronda</span></div>
+    <div class="cal-cell c3"><span class="cal-dow">Niedziela</span><span class="cal-num">20</span><span class="cal-lab">Nerja, Frigiliana,<br>klify Maro</span></div>
+    <div class="cal-cell c3"><span class="cal-dow">Poniedziałek</span><span class="cal-num">21</span><span class="cal-lab">Ostatni dzień,<br>wylot 19:35</span></div>
   </div>
 
   <div class="legend">
-    <span><i class="swatch" style="background:#2C6F7B"></i> Rozdział 01 · Skała</span>
-    <span><i class="swatch" style="background:#B0442B"></i> Rozdział 02 · Wapno</span>
+    <span><i class="swatch" style="background:#9C7833"></i> Rozdział 01 · Miasto</span>
+    <span><i class="swatch" style="background:#B0442B"></i> Rozdział 02 · Skała</span>
+    <span><i class="swatch" style="background:#2C6F7B"></i> Rozdział 03 · Woda</span>
   </div>
 
   <hr class="rule">
 
   <div class="stats">
     <div class="stat"><b>5</b><span>Dni</span></div>
-    <div class="stat"><b>4</b><span>Noce</span></div>
     <div class="stat"><b>7,7</b><span>Km kanionu</span></div>
+    <div class="stat"><b>450</b><span>Km autem</span></div>
     <div class="stat"><b>23°</b><span>Woda w morzu</span></div>
   </div>
 
   <div class="note">
     <h4>Światło we wrześniu</h4>
-    <p>Wschód słońca około <strong>8:03</strong>, zachód około <strong>20:23</strong>. Málaga leży daleko na zachodzie strefy czasowej, więc poranki są ciemne dłużej niż w Polsce, a wieczory jasne prawie do wpół do dziewiątej. Pobudka o ósmej to tutaj pobudka o świcie, a kolację o dwudziestej pierwszej je się jeszcze przy świetle.</p>
+    <p>Wschód słońca około <strong>8:03</strong>, zachód około <strong>20:23</strong>. Málaga leży daleko na zachodzie strefy czasowej, więc poranki są ciemne dłużej niż w Polsce, a wieczory jasne prawie do wpół do dziewiątej. Pobudka o ósmej to tutaj pobudka o świcie, a kolację o dwudziestej pierwszej je się jeszcze przy świetle. W sobotę ta długa końcówka dnia jest wpisana w plan: w Rondzie zostajecie do złotej godziny.</p>
   </div>
 </section>
 
@@ -667,11 +683,11 @@ th:last-child, td:last-child{ padding-right:0; }
   <span class="ghost" aria-hidden="true">01</span>
   <div class="chapter-in">
     <p class="eyebrow">Rozdział 01 · 17–18 września</p>
-    <h1>Skała</h1>
-    <p class="lead">Dwa dni, które ustawiają wyjazd: jeden na dojście do siebie po nocnej pobudce, drugi na najbardziej spektakularną rzecz w całej prowincji.</p>
+    <h1>Miasto</h1>
+    <p class="lead">Dwa dni na oswojenie się z Malagą: jeden na dojście do siebie po nocnej pobudce, drugi na miasto od środka, w dzień roboczy i bez tłumów.</p>
     <div class="rows">
       <div class="row"><div class="row-k">17.09</div><div class="row-t">Czwartek · Miękkie lądowanie</div></div>
-      <div class="row"><div class="row-k">18.09</div><div class="row-t">Piątek · Caminito del Rey</div></div>
+      <div class="row"><div class="row-k">18.09</div><div class="row-t">Piątek · Málaga od środka</div></div>
     </div>
   </div>
 </section>
@@ -686,13 +702,13 @@ th:last-child, td:last-child{ padding-right:0; }
   <div class="daygrid">
     <div class="tl">
       <div class="tl-i"><div class="tl-time">02:30</div><div class="tl-body"><div class="tl-txt">Pobudka w Polsce. Na lotnisku w Pyrzowicach o 04:00.</div></div></div>
-      <div class="tl-i"><div class="tl-time">05:45</div><div class="tl-body"><div class="tl-txt">Wylot z Katowic<span class="tl-sub">Rezerwacja w mailu, dwie osoby</span></div></div></div>
+      <div class="tl-i"><div class="tl-time">05:45</div><div class="tl-body"><div class="tl-txt">Wylot z Katowic<span class="tl-sub">Dwie osoby, bagaż zgodnie z rezerwacją</span></div></div></div>
       <div class="tl-i key"><div class="tl-time">ok. 09:05</div><div class="tl-body"><div class="tl-txt">Lądowanie w Maladze<span class="tl-sub">Ta sama strefa czasowa co w Polsce — zegarków nie przestawiacie</span></div></div></div>
-      <div class="tl-i"><div class="tl-time">09:45</div><div class="tl-body"><div class="tl-txt">Odbiór samochodu<span class="tl-sub">Terminal albo shuttle do biura poza lotniskiem, zależnie od wypożyczalni</span></div></div></div>
+      <div class="tl-i"><div class="tl-time">09:45</div><div class="tl-body"><div class="tl-txt">Odbiór samochodu<span class="tl-sub">Zdjęcia karoserii i licznika przed wyjazdem z parkingu — to Wasz jedyny dowód przy zwrocie</span></div></div></div>
       <div class="tl-i"><div class="tl-time">10:40</div><div class="tl-body"><div class="tl-txt">Parking Santuario de la Victoria<span class="tl-sub">Plazuela Cristo del Amor, trzy minuty od apartamentu</span></div></div></div>
       <div class="tl-i key"><div class="tl-time">11:00</div><div class="tl-body"><div class="tl-txt">Bagaże w apartamencie<span class="tl-sub">Zgłoszony przyjazd 11:00–12:00. Formalne zameldowanie dopiero od 16:00</span></div></div></div>
       <div class="tl-i"><div class="tl-time">11:45</div><div class="tl-body"><div class="tl-txt">Churros u Casa Arandy<span class="tl-sub">Calle Herrería del Rey, instytucja od 1932. Zamawia się „chocolate con churros”</span></div></div></div>
-      <div class="tl-i key"><div class="tl-time">12:45</div><div class="tl-body"><div class="tl-txt">Mercado Atarazanas<span class="tl-sub">Targ w mauretańskiej bramie stoczni. Zakupy na śniadania na cały pobyt</span></div></div></div>
+      <div class="tl-i key"><div class="tl-time">12:45</div><div class="tl-body"><div class="tl-txt">Mercado Atarazanas<span class="tl-sub">Targ w mauretańskiej bramie stoczni. Zakupy na śniadania na cały pobyt — czynny do około 15:00</span></div></div></div>
       <div class="tl-i"><div class="tl-time">14:00</div><div class="tl-body"><div class="tl-txt">Obiad w barze przy targu</div></div></div>
       <div class="tl-i key"><div class="tl-time">15:00</div><div class="tl-body"><div class="tl-txt">Sjesta — punkt obowiązkowy<span class="tl-sub">Po pobudce o 2:30 to nie jest luksus, tylko warunek udanego wieczoru</span></div></div></div>
       <div class="tl-i"><div class="tl-time">17:30</div><div class="tl-body"><div class="tl-txt">Zameldowanie, prysznic</div></div></div>
@@ -705,7 +721,7 @@ th:last-child, td:last-child{ padding-right:0; }
     <aside class="aside">
       <div class="acard">
         <h4>Dziś nie przesadzajcie</h4>
-        <p>Ten dzień ma jedno zadanie: przetrwać go tak, żeby piątek był mocny. Wszystko poza sjestą jest opcjonalne. Jeśli po targu okaże się, że nie dacie rady wyjść wieczorem — nic się nie stanie, miasto nigdzie nie ucieknie.</p>
+        <p>Ten dzień ma jedno zadanie: przetrwać go tak, żeby reszta wyjazdu była mocna. Wszystko poza sjestą jest opcjonalne. Jeśli po targu okaże się, że nie dacie rady wyjść wieczorem — nic się nie stanie, miasto nigdzie nie ucieknie.</p>
       </div>
       <div class="acard teal">
         <h4>Zakupy na targu</h4>
@@ -713,12 +729,13 @@ th:last-child, td:last-child{ padding-right:0; }
           <li>Chleb, pomidory, oliwa, ser manchego, szynka — baza na cztery śniadania</li>
           <li>Owoce: figi i winogrona są teraz w sezonie</li>
           <li>Kawa i mleko, bo apartament ma aneks</li>
-          <li>Woda w dużych butelkach — kranówka jest zdatna, ale twarda</li>
+          <li>Woda w dużych butelkach, także na sobotę do kanionu</li>
         </ul>
+        <p style="margin-top:.5rem">Dziś albo w piątek — w niedzielę targ nie handluje.</p>
       </div>
       <div class="acard">
         <h4>Kaucja 100 €</h4>
-        <p>Obiekt pobiera kaucję kartą kredytową na siedem dni przed przyjazdem, czyli około 10 września. Sprawdźcie limit na karcie, żeby nie było niespodzianki. Zwrot następuje do siedmiu dni po wymeldowaniu.</p>
+        <p>Obiekt pobiera kaucję kartą kredytową na siedem dni przed przyjazdem, czyli powinna już być zablokowana. Zwrot następuje do siedmiu dni po wymeldowaniu.</p>
       </div>
     </aside>
   </div>
@@ -727,133 +744,29 @@ th:last-child, td:last-child{ padding-right:0; }
 <!-- ===================== DZIEŃ 2 ===================== -->
 <section class="sheet" id="d2">
   <p class="eyebrow">Dzień 2 · Piątek</p>
-  <div class="dayhead"><span class="d">18.09</span><span class="t">Caminito del Rey</span></div>
+  <div class="dayhead"><span class="d">18.09</span><span class="t">Málaga od środka</span></div>
   <div class="dayrule"></div>
-  <div style="margin-top:.9rem" class="tempo">Tempo <i><b class="on"></b><b class="on"></b><b class="on"></b></i> gęsto</div>
-
-  <div class="daygrid">
-    <div class="tl">
-      <div class="tl-i"><div class="tl-time">07:15</div><div class="tl-body"><div class="tl-txt">Pobudka, śniadanie w apartamencie<span class="tl-sub">Jedyny dzień przed ósmą. Kanion nie zostawia wyboru</span></div></div></div>
-      <div class="tl-i"><div class="tl-time">08:15</div><div class="tl-body"><div class="tl-txt">Wyjazd z parkingu<span class="tl-sub">Około 60 km, droga przez Álora i Ardales</span></div></div></div>
-      <div class="tl-i"><div class="tl-time">09:25</div><div class="tl-body"><div class="tl-txt">Parking przy wejściu północnym<span class="tl-sub">Centrum Recepcji Odwiedzających, Puerto de las Atalayas. 2 € za dobę</span></div></div></div>
-      <div class="tl-i key"><div class="tl-time">09:50</div><div class="tl-body"><div class="tl-txt">Zbiórka pod restauracją El Kiosko<span class="tl-sub">Parque Ardales, Pantano El Chorro. Przewodnicy w czerwono-czarnych strojach, z czerwoną flagą. Trzydzieści minut przed wejściem</span></div></div></div>
-      <div class="tl-i key"><div class="tl-time">10:20</div><div class="tl-body"><div class="tl-txt">Wejście na trasę<span class="tl-sub">Kask obowiązkowy, dostajecie go na miejscu w cenie biletu</span></div></div></div>
-      <div class="tl-i"><div class="tl-time">10:20–13:40</div><div class="tl-body"><div class="tl-txt">Przejście: 7,7 km<span class="tl-sub">Dojścia leśne, potem 2,7 km kładek przypiętych do ściany. Most wiszący nad przepaścią mniej więcej w dwóch trzecich trasy</span></div></div></div>
-      <div class="tl-i"><div class="tl-time">ok. 13:45</div><div class="tl-body"><div class="tl-txt">Wyjście południowe, El Chorro</div></div></div>
-      <div class="tl-i key"><div class="tl-time">14:15</div><div class="tl-body"><div class="tl-txt">Shuttle z powrotem pod auto<span class="tl-sub">2,50 € od osoby, płatne gotówką. Kursuje do 19:00</span></div></div></div>
-      <div class="tl-i"><div class="tl-time">15:00</div><div class="tl-body"><div class="tl-txt">Późny obiad w El Chorro albo Ardales<span class="tl-sub">Po czterech godzinach marszu to będzie najlepszy posiłek wyjazdu</span></div></div></div>
-      <div class="tl-i"><div class="tl-time">16:30</div><div class="tl-body"><div class="tl-txt">Jeziora Guadalhorce<span class="tl-sub">Zapora Conde de Guadalhorce i turkusowa woda. Kilkanaście minut autem od El Chorro, punkt widokowy przy drodze</span></div></div></div>
-      <div class="tl-i"><div class="tl-time">18:00</div><div class="tl-body"><div class="tl-txt">Powrót do Malagi</div></div></div>
-      <div class="tl-i"><div class="tl-time">21:00</div><div class="tl-body"><div class="tl-txt">Kolacja blisko domu<span class="tl-sub">Casa Lola albo La Tranca. Wieczór celowo krótki</span></div></div></div>
-    </div>
-
-    <aside class="aside">
-      <div class="acard">
-        <h4>Trasa jest jednokierunkowa</h4>
-        <p>Wchodzi się od północy, wychodzi na południu przy stacji El Chorro. Nie ma powrotu tą samą drogą — dlatego istnieje shuttle. Zaparkowane auto zostaje po stronie północnej i wracacie do niego autobusem.</p>
-      </div>
-      <div class="acard teal">
-        <h4>Co zabrać na kładki</h4>
-        <ul>
-          <li>Pełne buty, nie klapki i nie sandały — sprawdzają przy wejściu</li>
-          <li>Dokument ze zdjęciem, weryfikują wiek</li>
-          <li>Woda: na trasie nie ma żadnego punktu z wodą</li>
-          <li>Czapka i krem — na kładkach nie ma cienia</li>
-          <li>Gotówka na shuttle, karty nie przyjmują</li>
-          <li>Plecak z przodu lub mały: przejścia bywają wąskie</li>
-        </ul>
-      </div>
-      <div class="acard">
-        <h4>Silny wiatr zamyka trasę</h4>
-        <p>Przy porywach powyżej pewnego progu obiekt zamyka kładki i zwraca pieniądze — decyzja zapada rano. Sprawdźcie prognozę w czwartek wieczorem. Jeśli piątek wypadnie, planem zastępczym jest Ronda albo El Torcal.</p>
-      </div>
-    </aside>
-  </div>
-
-  <div class="mapbox" style="margin-top:2rem">
-    <svg viewBox="0 0 620 210" role="img" aria-labelledby="camTytul camOpis">
-      <title id="camTytul">Schemat trasy Caminito del Rey</title>
-      <desc id="camOpis">Trasa jednokierunkowa: wejście północne przy restauracji El Kiosko, kładki przez kanion, wyjście południowe przy stacji El Chorro, powrót autobusem shuttle pod parking na północy.</desc>
-      <rect width="620" height="210" fill="#F0EEE7"/>
-
-      <!-- masyw skalny -->
-      <path d="M60 130 L106 66 L150 104 L196 52 L242 96 L290 44 L340 92 L392 56 L442 100 L492 62 L540 108 L570 88 L570 150 L60 150 Z" fill="#DFE3D6"/>
-      <path d="M60 150 L570 150 L570 172 L60 172 Z" fill="#E7E4DA"/>
-
-      <!-- rzeka -->
-      <path d="M60 161 Q180 155 300 163 Q420 171 570 160" fill="none" stroke="#2C6F7B" stroke-width="3" opacity=".5"/>
-
-      <!-- kładki -->
-      <path d="M148 122 L470 122" fill="none" stroke="#B0442B" stroke-width="2.6"/>
-      <g stroke="#B0442B" stroke-width="1.2" opacity=".75">
-        <path d="M170 122 v10"/><path d="M212 122 v10"/><path d="M254 122 v10"/><path d="M296 122 v10"/>
-        <path d="M338 122 v10"/><path d="M380 122 v10"/><path d="M422 122 v10"/><path d="M464 122 v10"/>
-      </g>
-      <text x="309" y="112" text-anchor="middle" font-family="Archivo, sans-serif" font-size="11" font-weight="700" letter-spacing=".4" fill="#B0442B">2,7 KM KŁADEK · 100 M NAD RZEKĄ</text>
-
-      <!-- punkty -->
-      <g font-family="Archivo, sans-serif">
-        <circle cx="118" cy="122" r="8" fill="#17313A"/>
-        <text x="118" y="36" text-anchor="middle" font-size="11" font-weight="800" fill="#17313A">WEJŚCIE PN.</text>
-        <text x="118" y="49" text-anchor="middle" font-size="9" font-weight="600" letter-spacing=".8" fill="#78858A">EL KIOSKO · 10:20</text>
-        <path d="M118 54 L118 112" stroke="#17313A" stroke-width="1" stroke-dasharray="3 3"/>
-
-        <circle cx="500" cy="122" r="8" fill="#17313A"/>
-        <text x="500" y="36" text-anchor="middle" font-size="11" font-weight="800" fill="#17313A">WYJŚCIE PD.</text>
-        <text x="500" y="49" text-anchor="middle" font-size="9" font-weight="600" letter-spacing=".8" fill="#78858A">EL CHORRO · ok. 13:45</text>
-        <path d="M500 54 L500 112" stroke="#17313A" stroke-width="1" stroke-dasharray="3 3"/>
-      </g>
-
-      <!-- shuttle -->
-      <path d="M500 138 Q500 196 309 196 Q118 196 118 138" fill="none" stroke="#2C6F7B" stroke-width="2" stroke-dasharray="6 4"/>
-      <path d="M124 146 L118 134 L112 146 Z" fill="#2C6F7B"/>
-      <rect x="252" y="187" width="118" height="18" rx="2" fill="#F0EEE7"/>
-      <text x="311" y="200" text-anchor="middle" font-family="Archivo, sans-serif" font-size="10" font-weight="700" letter-spacing=".8" fill="#2C6F7B">SHUTTLE · 2,50 €</text>
-    </svg>
-  </div>
-</section>
-
-<!-- ===================== ROZDZIAŁ 02 ===================== -->
-<section class="chapter">
-  <span class="ghost" aria-hidden="true">02</span>
-  <div class="chapter-in">
-    <p class="eyebrow">Rozdział 02 · 19–21 września</p>
-    <h1>Wapno</h1>
-    <p class="lead">Trzy dni bielonych ścian: mauretańska forteca nad miastem, białe miasteczko nad morzem i pożegnanie bez pośpiechu.</p>
-    <div class="rows">
-      <div class="row"><div class="row-k">19.09</div><div class="row-t">Sobota · Málaga od środka</div></div>
-      <div class="row"><div class="row-k">20.09</div><div class="row-t">Niedziela · Frigiliana i klify Maro</div></div>
-      <div class="row"><div class="row-k">21.09</div><div class="row-t">Poniedziałek · Ostatni dzień</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== DZIEŃ 3 ===================== -->
-<section class="sheet" id="d3">
-  <p class="eyebrow">Dzień 3 · Sobota</p>
-  <div class="dayhead"><span class="d">19.09</span><span class="t">Málaga od środka</span></div>
-  <div class="dayrule"></div>
-  <div style="margin-top:.9rem" class="tempo">Tempo <i><b class="on"></b><b class="on"></b><b></b></i> wolno, wszystko pieszo</div>
+  <div style="margin-top:.9rem" class="tempo">Tempo <i><b class="on"></b><b class="on"></b><b></b></i> spokojnie, wszystko pieszo</div>
 
   <div class="daygrid">
     <div class="tl">
       <div class="tl-i"><div class="tl-time">09:00</div><div class="tl-body"><div class="tl-txt">Śniadanie w apartamencie<span class="tl-sub">Auto zostaje w garażu na cały dzień</span></div></div></div>
-      <div class="tl-i key"><div class="tl-time">10:00</div><div class="tl-body"><div class="tl-txt">Alcazaba<span class="tl-sub">Wejście od Calle Alcazabilla. Bilet łączony z Gibralfaro 5,50 €, ważny 48 godzin</span></div></div></div>
-      <div class="tl-i"><div class="tl-time">11:30</div><div class="tl-body"><div class="tl-txt">Ścieżka na Gibralfaro<span class="tl-sub">Camino del Monte, dwadzieścia minut pod górę. Widok rośnie z każdym zakrętem</span></div></div></div>
-      <div class="tl-i key"><div class="tl-time">12:15</div><div class="tl-body"><div class="tl-txt">Zamek i Mirador de Gibralfaro<span class="tl-sub">Panorama na port i arenę La Malagueta — z góry widać, że ma kształt koła</span></div></div></div>
-      <div class="tl-i"><div class="tl-time">13:30</div><div class="tl-body"><div class="tl-txt">Zejście i obiad<span class="tl-sub">Menú del día to najlepszy stosunek ceny do jakości w całej Hiszpanii</span></div></div></div>
-      <div class="tl-i"><div class="tl-time">15:00</div><div class="tl-body"><div class="tl-txt">Sjesta<span class="tl-sub">Między czternastą a siedemnastą pół miasta jest zamknięte. Nie walczcie z tym</span></div></div></div>
-      <div class="tl-i key"><div class="tl-time">16:00</div><div class="tl-body"><div class="tl-txt">Museo Picasso Málaga<span class="tl-sub">Palacio de Buenavista, Calle San Agustín 8. Otwarte do 19:00, bilet 9 € z audioprzewodnikiem</span></div></div></div>
-      <div class="tl-i key"><div class="tl-time">18:00</div><div class="tl-body"><div class="tl-txt">Dachy katedry<span class="tl-sub">Ostatnie sobotnie wejście na cubiertas. Chodzi się po sklepieniach, w dole miasto, obok niedokończona wieża</span></div></div></div>
-      <div class="tl-i"><div class="tl-time">19:15</div><div class="tl-body"><div class="tl-txt">Calle Larios i Soho<span class="tl-sub">Dzielnica z muralami na ścianach kamienic, kilka ulic na południe od centrum</span></div></div></div>
-      <div class="tl-i key"><div class="tl-time">20:45</div><div class="tl-body"><div class="tl-txt">Espeto w Pedregalejo<span class="tl-sub">Taksówka około 12 € albo autobus linii 11. Autem nie, bo będzie wino</span></div></div></div>
+      <div class="tl-i key"><div class="tl-time">09:45</div><div class="tl-body"><div class="tl-txt">Alcazaba<span class="tl-sub">Wejście od Calle Alcazabilla. Bilet łączony z Gibralfaro 5,50 €, ważny 48 godzin. Otwarte od 9:00 — im wcześniej, tym chłodniej i pusto</span></div></div></div>
+      <div class="tl-i"><div class="tl-time">11:15</div><div class="tl-body"><div class="tl-txt">Ścieżka na Gibralfaro<span class="tl-sub">Camino del Monte, dwadzieścia minut pod górę. Widok rośnie z każdym zakrętem</span></div></div></div>
+      <div class="tl-i key"><div class="tl-time">12:00</div><div class="tl-body"><div class="tl-txt">Zamek i Mirador de Gibralfaro<span class="tl-sub">Panorama na port i arenę La Malagueta — z góry widać, że ma kształt koła</span></div></div></div>
+      <div class="tl-i"><div class="tl-time">13:15</div><div class="tl-body"><div class="tl-txt">Zejście i obiad<span class="tl-sub">Menú del día: dwa dania, chleb, napój i deser za 12–16 €. Tylko w dni robocze — dziś się załapujecie</span></div></div></div>
+      <div class="tl-i"><div class="tl-time">14:45</div><div class="tl-body"><div class="tl-txt">Sjesta<span class="tl-sub">Między czternastą a siedemnastą pół miasta jest zamknięte. Nie walczcie z tym</span></div></div></div>
+      <div class="tl-i key"><div class="tl-time">16:00</div><div class="tl-body"><div class="tl-txt">Dachy katedry<span class="tl-sub">Cubiertas — chodzi się po sklepieniach, w dole miasto, obok niedokończona wieża. 6 € osobnym wejściem, nie przez katedrę</span></div></div></div>
+      <div class="tl-i key"><div class="tl-time">17:15</div><div class="tl-body"><div class="tl-txt">Museo Picasso Málaga<span class="tl-sub">Palacio de Buenavista, Calle San Agustín 8. Otwarte do 19:00, ostatnie wejście ok. 18:15. Bilet 9 € z audioprzewodnikiem</span></div></div></div>
+      <div class="tl-i"><div class="tl-time">19:00</div><div class="tl-body"><div class="tl-txt">Calle Larios i Soho<span class="tl-sub">Dzielnica z muralami na ścianach kamienic, kilka ulic na południe od centrum</span></div></div></div>
+      <div class="tl-i key"><div class="tl-time">20:30</div><div class="tl-body"><div class="tl-txt">Espeto w Pedregalejo<span class="tl-sub">Taksówka około 12 € albo autobus linii 11. Autem nie, bo będzie wino</span></div></div></div>
       <div class="tl-i"><div class="tl-time">23:00</div><div class="tl-body"><div class="tl-txt">Powrót</div></div></div>
     </div>
 
     <aside class="aside">
       <div class="acard">
-        <h4>Katedra zwana Manquitą</h4>
-        <p>„Jednoręka” — bo ma tylko jedną wieżę. Pieniądze na drugą poszły w XVIII wieku na inne cele i tak zostało do dziś. Wejście na dachy to osobny bilet i osobne wejście, nie wchodzi się nim do środka.</p>
+        <h4>Godziny na dachach bywają ruchome</h4>
+        <p>W dni robocze wejścia na cubiertas są zwykle co godzinę od 11:00 do 17:00, w soboty dłużej, w niedziele tylko po południu. Terminy zmieniają się sezonowo i przy nabożeństwach — <strong>sprawdźcie tablicę przy kasie rano</strong>, przy okazji Alcazaby, i w razie czego przestawcie Picassa z katedrą.</p>
       </div>
       <div class="acard teal">
         <h4>Espeto: jak to działa</h4>
@@ -861,10 +774,159 @@ th:last-child, td:last-child{ padding-right:0; }
         <p style="margin-top:.5rem">Jedno espeto to sześć sardynek. Je się palcami, od ogona.</p>
       </div>
       <div class="acard">
-        <h4>Gdyby padało</h4>
-        <p>We wrześniu deszcz zdarza się trzy razy w miesiącu, ale gdyby trafił akurat dziś: Centre Pompidou przy porcie, Museo Carmen Thyssen i Museo Ruso są w zasięgu spaceru i wypełniają cały dzień.</p>
+        <h4>Katedra zwana Manquitą</h4>
+        <p>„Jednoręka” — bo ma tylko jedną wieżę. Pieniądze na drugą poszły w XVIII wieku na inne cele i tak zostało do dziś. Podobno część wsparła amerykańską wojnę o niepodległość, choć historycy się o to spierają.</p>
       </div>
     </aside>
+  </div>
+</section>
+
+<!-- ===================== ROZDZIAŁ 02 ===================== -->
+<section class="chapter">
+  <span class="ghost" aria-hidden="true">02</span>
+  <div class="chapter-in">
+    <p class="eyebrow">Rozdział 02 · 19 września</p>
+    <h1>Skała</h1>
+    <p class="lead">Jeden dzień, dwie przepaście. Rano kładki przypięte do ściany kanionu, po południu miasto rozcięte wąwozem na pół. Najcięższy i najlepszy dzień wyjazdu.</p>
+    <div class="rows">
+      <div class="row"><div class="row-k">11:20</div><div class="row-t">Caminito del Rey · wejście z przewodnikiem</div></div>
+      <div class="row"><div class="row-k">15:25</div><div class="row-t">Ronda · obiad, most i złota godzina</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DZIEŃ 3 ===================== -->
+<section class="sheet" id="d3">
+  <p class="eyebrow">Dzień 3 · Sobota</p>
+  <div class="dayhead"><span class="d">19.09</span><span class="t">Caminito i Ronda</span></div>
+  <div class="dayrule"></div>
+  <div style="margin-top:.9rem" class="tempo">Tempo <i><b class="on"></b><b class="on"></b><b class="on"></b></i> bardzo gęsto · ok. 400 km</div>
+
+  <div class="daygrid">
+    <div class="tl">
+      <div class="tl-i"><div class="tl-time">08:00</div><div class="tl-body"><div class="tl-txt">Pobudka, śniadanie, kanapki i woda do plecaka<span class="tl-sub">Na trasie nie ma żadnego punktu z wodą ani jedzeniem</span></div></div></div>
+      <div class="tl-i"><div class="tl-time">08:45</div><div class="tl-body"><div class="tl-txt">Wyjazd z parkingu<span class="tl-sub">Około 65 km przez Álora i Ardales, ostatni odcinek górski</span></div></div></div>
+      <div class="tl-i key"><div class="tl-time">09:50</div><div class="tl-body"><div class="tl-txt">Parking przy Centro de Visitantes<span class="tl-sub">Puerto de las Atalayas, parking płatny ok. 2 €. Voucher wymaga bycia tu <b>najpóźniej o 10:20</b>, godzinę przed wejściem</span></div></div></div>
+      <div class="tl-i"><div class="tl-time">10:10</div><div class="tl-body"><div class="tl-txt">Shuttle pod wejście północne<span class="tl-sub">2,50 € od osoby, <b>tylko gotówka</b>. Jedzie ok. 20 minut, wysiadacie na ostatnim przystanku</span></div></div></div>
+      <div class="tl-i"><div class="tl-time">10:35</div><div class="tl-body"><div class="tl-txt">Tunel dla pieszych i marsz 1,5 km<span class="tl-sub">Tunel 200 m przed restauracją El Kiosko, potem znaki „Caminito del Rey”. To jeszcze nie trasa, tylko dojście — zajmuje ok. 25 minut</span></div></div></div>
+      <div class="tl-i key"><div class="tl-time">11:00</div><div class="tl-body"><div class="tl-txt">Control Booth — spotkanie z przewodnikiem<span class="tl-sub">Wejście północne. Pokazujecie voucher i dokument ze zdjęciem, dostajecie kask</span></div></div></div>
+      <div class="tl-i key"><div class="tl-time">11:20</div><div class="tl-body"><div class="tl-txt">Wejście na kładki<span class="tl-sub">Dwie godziny z przewodnikiem, po angielsku. Most wiszący nad przepaścią mniej więcej w dwóch trzecich trasy</span></div></div></div>
+      <div class="tl-i"><div class="tl-time">ok. 13:30</div><div class="tl-body"><div class="tl-txt">Wyjście południowe przy El Chorro</div></div></div>
+      <div class="tl-i"><div class="tl-time">13:50</div><div class="tl-body"><div class="tl-txt">Shuttle z powrotem pod auto<span class="tl-sub">Znów 2,50 € od osoby. Kursuje do ok. 19:00, ale nie ma po co czekać</span></div></div></div>
+      <div class="tl-i"><div class="tl-time">14:20</div><div class="tl-body"><div class="tl-txt">Wyjazd do Rondy<span class="tl-sub">Około 65 km drogami A-357 i A-367, godzina i pięć minut</span></div></div></div>
+      <div class="tl-i key"><div class="tl-time">15:30</div><div class="tl-body"><div class="tl-txt">Ronda: późny obiad<span class="tl-sub">Plaza del Socorro albo uliczki wokół — dwie przecznice od mostu ceny spadają o jedną trzecią</span></div></div></div>
+      <div class="tl-i key"><div class="tl-time">16:50</div><div class="tl-body"><div class="tl-txt">Puente Nuevo i Mirador de Aldehuela<span class="tl-sub">Most z 1793 roku nad wąwozem Tajo, sto metrów w dół. Najlepszy widok jest z tarasu po stronie starego miasta</span></div></div></div>
+      <div class="tl-i"><div class="tl-time">17:30</div><div class="tl-body"><div class="tl-txt">Plaza de Toros<span class="tl-sub">Najstarsza czynna arena w Hiszpanii, 1785 rok. Można wejść na piasek i do stajni</span></div></div></div>
+      <div class="tl-i"><div class="tl-time">18:30</div><div class="tl-body"><div class="tl-txt">Stare miasto po drugiej stronie mostu<span class="tl-sub">Palacio de Mondragón, Santa María la Mayor i ogrody Casa del Rey Moro z wykutymi w skale schodami do rzeki</span></div></div></div>
+      <div class="tl-i key"><div class="tl-time">19:30</div><div class="tl-body"><div class="tl-txt">Alameda del Tajo — złota godzina<span class="tl-sub">Park na samej krawędzi urwiska. Tu kończymy, bo o tej porze autokary już pojechały</span></div></div></div>
+      <div class="tl-i"><div class="tl-time">20:15</div><div class="tl-body"><div class="tl-txt">Wyjazd do Malagi<span class="tl-sub">Około 100 km, półtorej godziny. Pierwszy odcinek jeszcze przy świetle</span></div></div></div>
+      <div class="tl-i"><div class="tl-time">21:45</div><div class="tl-body"><div class="tl-txt">Málaga, późna kolacja blisko domu<span class="tl-sub">La Tranca albo cokolwiek otwartego przy Merced. Dziś nie planujemy niczego ambitnego</span></div></div></div>
+    </div>
+
+    <aside class="aside">
+      <div class="acard">
+        <h4>Voucher: co musi się zgadzać</h4>
+        <div class="kv" style="margin-top:.5rem">
+          <dt>Data</dt><dd><b>sob. 19.09, 11:20</b></dd>
+          <dt>Opcja</dt><dd>z przewodnikiem, po angielsku</dd>
+          <dt>Osoby</dt><dd>2 dorosłe</dd>
+          <dt>Na parkingu</dt><dd>najpóźniej <b>10:20</b></dd>
+          <dt>Zbiórka</dt><dd>Control Booth, wejście północne</dd>
+          <dt>Rezerwacja</dt><dd>numer i PIN w mailu<br>od GetYourGuide oraz w PDF-ie offline</dd>
+        </div>
+        <p style="margin-top:.6rem">Voucher pokażcie z telefonu albo na wydruku. Do tego <strong>dokument ze zdjęciem</strong> — przy wejściu weryfikują tożsamość i wiek.</p>
+      </div>
+      <div class="acard warn-card">
+        <h4>Czego nie wpuszczą</h4>
+        <ul>
+          <li>Butów odkrytych — sandałów i klapek</li>
+          <li>Kijków trekkingowych</li>
+          <li>Dużych plecaków i walizek</li>
+          <li>Kijków do selfie</li>
+        </ul>
+        <p style="margin-top:.5rem">Kask dostajecie na miejscu, jest w cenie.</p>
+      </div>
+      <div class="acard teal">
+        <h4>Dlaczego to działa w jeden dzień</h4>
+        <p>Bo Ronda leży po tej samej stronie co kanion. Z Malagi do El Chorro jedziecie godzinę, z El Chorro do Rondy kolejną — gdyby to rozdzielić na dwa dni, przejechalibyście ten sam górski odcinek czterokrotnie zamiast dwukrotnie.</p>
+        <p style="margin-top:.5rem">Cena: dwanaście godzin poza domem. Dlatego niedziela kończy się na plaży.</p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="mapbox" style="margin-top:2rem">
+    <svg viewBox="0 0 620 290" role="img" aria-labelledby="camTytul camOpis">
+      <title id="camTytul">Przebieg dnia na Caminito del Rey</title>
+      <desc id="camOpis">Od parkingu przy Centro de Visitantes shuttle jedzie pod wejście północne, stamtąd 1,5 km pieszo do Control Booth, gdzie o 11:20 zaczyna się przejście kładkami. Wyjście przy El Chorro około 13:30, powrót shuttle'em pod parking.</desc>
+      <rect width="620" height="290" fill="#F0EEE7"/>
+
+      <!-- DOJŚCIE -->
+      <text x="20" y="24" font-family="Archivo, sans-serif" font-size="9.5" font-weight="700" letter-spacing="1.6" fill="#78858A">DOJŚCIE</text>
+      <g font-family="Archivo, sans-serif">
+        <circle cx="60" cy="56" r="7" fill="#17313A"/>
+        <text x="60" y="80" text-anchor="middle" font-size="10" font-weight="800" fill="#17313A">09:50</text>
+        <text x="60" y="92" text-anchor="middle" font-size="8.5" font-weight="600" fill="#78858A">PARKING</text>
+
+        <path d="M74 56 L206 56" stroke="#2C6F7B" stroke-width="2" stroke-dasharray="6 4"/>
+        <path d="M200 50 L212 56 L200 62 Z" fill="#2C6F7B"/>
+        <rect x="98" y="30" width="86" height="17" rx="2" fill="#F0EEE7"/>
+        <text x="141" y="43" text-anchor="middle" font-size="9.5" font-weight="700" fill="#2C6F7B">SHUTTLE 2,50 €</text>
+
+        <circle cx="220" cy="56" r="7" fill="#17313A"/>
+        <text x="220" y="80" text-anchor="middle" font-size="10" font-weight="800" fill="#17313A">10:35</text>
+        <text x="220" y="92" text-anchor="middle" font-size="8.5" font-weight="600" fill="#78858A">PRZYSTANEK</text>
+
+        <path d="M234 56 L366 56" stroke="#B0442B" stroke-width="2" stroke-dasharray="3 3"/>
+        <path d="M360 50 L372 56 L360 62 Z" fill="#B0442B"/>
+        <rect x="256" y="30" width="92" height="17" rx="2" fill="#F0EEE7"/>
+        <text x="302" y="43" text-anchor="middle" font-size="9.5" font-weight="700" fill="#B0442B">1,5 KM PIESZO</text>
+
+        <circle cx="380" cy="56" r="8" fill="#B0442B"/>
+        <text x="380" y="80" text-anchor="middle" font-size="10" font-weight="800" fill="#B0442B">11:00</text>
+        <text x="380" y="92" text-anchor="middle" font-size="8.5" font-weight="600" fill="#78858A">CONTROL BOOTH</text>
+      </g>
+
+      <!-- KANION -->
+      <path d="M60 196 L106 142 L150 178 L196 128 L242 172 L290 120 L340 168 L392 132 L442 176 L492 138 L540 184 L570 164 L570 222 L60 222 Z" fill="#DFE3D6"/>
+      <path d="M60 222 L570 222 L570 242 L60 242 Z" fill="#E7E4DA"/>
+      <path d="M60 232 Q180 227 300 234 Q420 241 570 231" fill="none" stroke="#2C6F7B" stroke-width="3" opacity=".5"/>
+
+      <path d="M130 194 L472 194" fill="none" stroke="#B0442B" stroke-width="2.6"/>
+      <g stroke="#B0442B" stroke-width="1.2" opacity=".75">
+        <path d="M156 194 v10"/><path d="M198 194 v10"/><path d="M240 194 v10"/><path d="M282 194 v10"/>
+        <path d="M324 194 v10"/><path d="M366 194 v10"/><path d="M408 194 v10"/><path d="M450 194 v10"/>
+      </g>
+      <rect x="168" y="174" width="266" height="17" rx="2" fill="#F0EEE7"/>
+      <text x="301" y="187" text-anchor="middle" font-family="Archivo, sans-serif" font-size="10" font-weight="700" letter-spacing=".3" fill="#B0442B">11:20–13:30 · 2,7 KM KŁADEK · 100 M NAD RZEKĄ</text>
+
+      <g font-family="Archivo, sans-serif">
+        <circle cx="110" cy="194" r="7" fill="#17313A"/>
+        <circle cx="496" cy="194" r="7" fill="#17313A"/>
+        <text x="496" y="120" text-anchor="middle" font-size="10" font-weight="800" fill="#17313A">13:30</text>
+        <text x="496" y="132" text-anchor="middle" font-size="8.5" font-weight="600" fill="#78858A">EL CHORRO</text>
+        <path d="M496 138 L496 184" stroke="#17313A" stroke-width="1" stroke-dasharray="3 3"/>
+      </g>
+
+      <!-- POWRÓT -->
+      <path d="M496 208 Q496 272 300 272 Q60 272 60 114" fill="none" stroke="#2C6F7B" stroke-width="2" stroke-dasharray="6 4"/>
+      <path d="M54 114 L60 102 L66 114 Z" fill="#2C6F7B"/>
+      <rect x="222" y="263" width="164" height="17" rx="2" fill="#F0EEE7"/>
+      <text x="304" y="276" text-anchor="middle" font-family="Archivo, sans-serif" font-size="9.5" font-weight="700" fill="#2C6F7B">13:50 · SHUTTLE POD AUTO · 2,50 €</text>
+    </svg>
+  </div>
+</section>
+
+<!-- ===================== ROZDZIAŁ 03 ===================== -->
+<section class="chapter">
+  <span class="ghost" aria-hidden="true">03</span>
+  <div class="chapter-in">
+    <p class="eyebrow">Rozdział 03 · 20–21 września</p>
+    <h1>Woda</h1>
+    <p class="lead">Dwa dni na wyciszenie: wybrzeże na wschód z jaskinią i białym miasteczkiem, potem ostatni dzień w mieście, z bagażami w bagażniku.</p>
+    <div class="rows">
+      <div class="row"><div class="row-k">20.09</div><div class="row-t">Niedziela · Nerja, Frigiliana i klify Maro</div></div>
+      <div class="row"><div class="row-k">21.09</div><div class="row-t">Poniedziałek · Ostatni dzień</div></div>
+    </div>
   </div>
 </section>
 
@@ -873,111 +935,109 @@ th:last-child, td:last-child{ padding-right:0; }
   <p class="eyebrow">Dzień 4 · Niedziela</p>
   <div class="dayhead"><span class="d">20.09</span><span class="t">Frigiliana i klify Maro</span></div>
   <div class="dayrule"></div>
-  <div style="margin-top:.9rem" class="tempo">Tempo <i><b class="on"></b><b class="on"></b><b class="on"></b></i> gęsto</div>
+  <div style="margin-top:.9rem" class="tempo">Tempo <i><b class="on"></b><b class="on"></b><b></b></i> pełny dzień, ale kończy się w wodzie</div>
 
   <div class="daygrid">
     <div class="tl">
-      <div class="tl-i"><div class="tl-time">08:00</div><div class="tl-body"><div class="tl-txt">Pobudka, śniadanie</div></div></div>
-      <div class="tl-i"><div class="tl-time">08:45</div><div class="tl-body"><div class="tl-txt">Wyjazd na wschód<span class="tl-sub">Autostradą A-7 wzdłuż wybrzeża, około 55 km</span></div></div></div>
-      <div class="tl-i key"><div class="tl-time">09:45</div><div class="tl-body"><div class="tl-txt">Cueva de Nerja<span class="tl-sub">Otwarcie 9:30, bilet 15 €. Ostatnie wejście o 15:30 — dlatego robimy jaskinię pierwszą</span></div></div></div>
-      <div class="tl-i key"><div class="tl-time">11:15</div><div class="tl-body"><div class="tl-txt">Frigiliana<span class="tl-sub">Dziesięć minut od jaskini. Dzielnica Barribarto: bielone uliczki pod górę, mauretański układ z XVI wieku</span></div></div></div>
-      <div class="tl-i"><div class="tl-time">13:15</div><div class="tl-body"><div class="tl-txt">Nerja: Balcón de Europa<span class="tl-sub">Taras na cyplu, z którego widać całe wybrzeże w obie strony</span></div></div></div>
-      <div class="tl-i"><div class="tl-time">14:00</div><div class="tl-body"><div class="tl-txt">Obiad nad morzem</div></div></div>
-      <div class="tl-i key"><div class="tl-time">15:30</div><div class="tl-body"><div class="tl-txt">Playa de Maro<span class="tl-sub">Zatoczka pod klifem, kilka kilometrów za Nerją. Klasa wyżej niż plaża miejska</span></div></div></div>
-      <div class="tl-i"><div class="tl-time">17:30</div><div class="tl-body"><div class="tl-txt">Powrót</div></div></div>
-      <div class="tl-i"><div class="tl-time">21:00</div><div class="tl-body"><div class="tl-txt">Kolacja w Maladze<span class="tl-sub">Uvedoble albo La Tranca, zależnie od siły w nogach</span></div></div></div>
+      <div class="tl-i"><div class="tl-time">08:45</div><div class="tl-body"><div class="tl-txt">Pobudka, śniadanie<span class="tl-sub">Po sobocie należy się dłuższy poranek</span></div></div></div>
+      <div class="tl-i"><div class="tl-time">09:30</div><div class="tl-body"><div class="tl-txt">Wyjazd na wschód<span class="tl-sub">Autostradą A-7 wzdłuż wybrzeża, około 55 km, bezpłatna</span></div></div></div>
+      <div class="tl-i key"><div class="tl-time">10:30</div><div class="tl-body"><div class="tl-txt">Cueva de Nerja<span class="tl-sub">Bilet 15 €. We wrześniu czynna 9:30–16:30, ostatnie wejście 15:30 — dlatego jaskinia idzie pierwsza</span></div></div></div>
+      <div class="tl-i key"><div class="tl-time">11:45</div><div class="tl-body"><div class="tl-txt">Frigiliana<span class="tl-sub">Dziesięć minut od jaskini. Dzielnica Barribarto: bielone uliczki pod górę, mauretański układ zaułków z XVI wieku</span></div></div></div>
+      <div class="tl-i"><div class="tl-time">14:00</div><div class="tl-body"><div class="tl-txt">Nerja: Balcón de Europa<span class="tl-sub">Taras na cyplu, z którego widać całe wybrzeże w obie strony</span></div></div></div>
+      <div class="tl-i"><div class="tl-time">14:45</div><div class="tl-body"><div class="tl-txt">Obiad nad morzem</div></div></div>
+      <div class="tl-i key"><div class="tl-time">16:15</div><div class="tl-body"><div class="tl-txt">Playa de Maro<span class="tl-sub">Zatoczka pod klifem, kilka kilometrów za Nerją. Zejście stromą ścieżką, woda przejrzysta — klasa wyżej niż plaża miejska</span></div></div></div>
+      <div class="tl-i"><div class="tl-time">18:15</div><div class="tl-body"><div class="tl-txt">Powrót</div></div></div>
+      <div class="tl-i"><div class="tl-time">21:00</div><div class="tl-body"><div class="tl-txt">Kolacja w Maladze<span class="tl-sub">Uvedoble albo Casa Lola, zależnie od siły w nogach</span></div></div></div>
     </div>
 
     <aside class="aside">
       <div class="acard">
-        <h4>Kolejność ma znaczenie</h4>
-        <p>Jaskinia zamyka kasę o 15:30, a we wrześniu wpuszcza tylko do 16:30. Miasteczko i plaża są otwarte zawsze. Dlatego dzień zaczyna się od tego, co ma sztywne godziny, a kończy na tym, co ich nie ma.</p>
+        <h4>Niedziela to dzień wycieczkowiczów</h4>
+        <p>Frigiliana i Nerja ściągają w weekend autokary z całego wybrzeża. Dlatego zaczynamy od jaskini zaraz po otwarciu i wchodzimy do miasteczka przed południem — <strong>po trzynastej robi się ciasno</strong>, a po szesnastej znów pusto.</p>
       </div>
       <div class="acard teal">
         <h4>Frigiliana pod górę</h4>
-        <p>Miasteczko jest zbudowane na zboczu i cała jego uroda polega na tym, że idzie się w górę. Wygodne buty, a samochód zostawcie na parkingu przy wjeździe — w Barribarto nie ma jak zawrócić.</p>
+        <p>Miasteczko jest zbudowane na zboczu i cała jego uroda polega na tym, że idzie się w górę. Samochód zostawcie na parkingu przy wjeździe — w Barribarto nie ma jak zawrócić, uliczki mają miejscami półtora metra szerokości.</p>
       </div>
       <div class="acard">
         <h4>Miód z trzciny</h4>
-        <p>W Frigilianie stoi ostatnia w Europie czynna fabryka <em>miel de caña</em> — gęstego syropu z trzciny cukrowej. Robi się z niego lokalny sos do bakłażanów: <em>berenjenas con miel de caña</em>. Warto zamówić.</p>
+        <p>W Frigilianie stoi ostatnia w Europie czynna fabryka <em>miel de caña</em> — gęstego syropu z trzciny cukrowej. Robi się z niego lokalny sos do bakłażanów: <em>berenjenas con miel de caña</em>. Warto zamówić przy obiedzie.</p>
       </div>
     </aside>
   </div>
 
   <div class="mapwrap" style="margin-top:2.2rem">
     <div class="mapbox">
-      <svg viewBox="0 0 620 340" role="img" aria-labelledby="provTytul provOpis">
-        <title id="provTytul">Mapa prowincji Málaga z wypadami</title>
-        <desc id="provOpis">Schemat prowincji. Z Malagi dwie trasy: na północny zachód do Caminito del Rey, około godziny drogi, i na wschód do Nerji i Frigiliany, także około godziny. Zaznaczone też Ronda i Antequera jako warianty zapasowe.</desc>
-        <rect width="620" height="340" fill="#F0EEE7"/>
+      <svg viewBox="0 0 620 360" role="img" aria-labelledby="provTytul provOpis">
+        <title id="provTytul">Mapa prowincji Málaga z trasami wyjazdów</title>
+        <desc id="provOpis">Z Malagi dwie trasy. W sobotę pętla na północny zachód: do Caminito del Rey, stamtąd do Rondy i z powrotem do Malagi. W niedzielę na wschód wzdłuż wybrzeża do Nerji i Frigiliany. Antequera i El Torcal zaznaczone jako wariant zapasowy.</desc>
+        <rect width="620" height="360" fill="#F0EEE7"/>
 
-        <!-- morze -->
-        <path d="M0 340 L0 288 Q120 266 250 282 Q380 298 470 268 Q548 242 620 250 L620 340 Z" fill="#CFE0E1"/>
-        <path d="M0 288 Q120 266 250 282 Q380 298 470 268 Q548 242 620 250" fill="none" stroke="#2C6F7B" stroke-width="1.6" opacity=".55"/>
-        <text x="120" y="326" font-family="Archivo, sans-serif" font-size="11" font-weight="600" letter-spacing="3" fill="#2C6F7B" opacity=".7">MORZE ŚRÓDZIEMNE</text>
+        <path d="M0 360 L0 300 Q120 278 250 294 Q380 310 470 280 Q548 254 620 262 L620 360 Z" fill="#CFE0E1"/>
+        <path d="M0 300 Q120 278 250 294 Q380 310 470 280 Q548 254 620 262" fill="none" stroke="#2C6F7B" stroke-width="1.6" opacity=".55"/>
+        <text x="120" y="340" font-family="Archivo, sans-serif" font-size="11" font-weight="600" letter-spacing="3" fill="#2C6F7B" opacity=".7">MORZE ŚRÓDZIEMNE</text>
 
-        <!-- góry -->
         <g fill="#E3E6DA">
-          <path d="M96 168 L146 118 L196 166 Z"/>
-          <path d="M170 150 L226 96 L282 148 Z"/>
-          <path d="M400 168 L450 122 L500 168 Z"/>
-          <path d="M462 150 L512 112 L562 152 Z"/>
+          <path d="M96 190 L146 140 L196 188 Z"/>
+          <path d="M170 172 L226 118 L282 170 Z"/>
+          <path d="M400 190 L450 144 L500 190 Z"/>
+          <path d="M462 172 L512 134 L562 174 Z"/>
         </g>
 
-        <!-- trasy -->
-        <path d="M330 262 Q288 190 226 140" fill="none" stroke="#B0442B" stroke-width="2.4" stroke-dasharray="7 5"/>
-        <path d="M330 262 Q412 258 500 232" fill="none" stroke="#B0442B" stroke-width="2.4" stroke-dasharray="7 5"/>
-        <path d="M330 262 Q252 214 118 200" fill="none" stroke="#9AA6A6" stroke-width="1.6" stroke-dasharray="4 5"/>
-        <path d="M330 262 Q330 160 316 84" fill="none" stroke="#9AA6A6" stroke-width="1.6" stroke-dasharray="4 5"/>
+        <!-- SOBOTNIA PĘTLA -->
+        <path d="M330 274 Q288 208 226 156" fill="none" stroke="#B0442B" stroke-width="2.6" stroke-dasharray="7 5"/>
+        <path d="M226 156 Q170 168 130 206" fill="none" stroke="#B0442B" stroke-width="2.6" stroke-dasharray="7 5"/>
+        <path d="M130 206 Q220 268 318 276" fill="none" stroke="#B0442B" stroke-width="2.6" stroke-dasharray="7 5"/>
+        <!-- NIEDZIELA -->
+        <path d="M330 274 Q412 270 500 244" fill="none" stroke="#2C6F7B" stroke-width="2.6" stroke-dasharray="7 5"/>
+        <!-- PLAN B -->
+        <path d="M330 274 Q330 180 316 100" fill="none" stroke="#9AA6A6" stroke-width="1.5" stroke-dasharray="4 5"/>
 
-        <!-- etykiety tras -->
-        <g font-family="Archivo, sans-serif" font-size="9.5" font-weight="700" fill="#B0442B">
-          <rect x="228" y="192" width="80" height="16" rx="2" fill="#F0EEE7"/>
-          <text x="268" y="204" text-anchor="middle">60 KM · 1H</text>
-          <rect x="392" y="240" width="80" height="16" rx="2" fill="#F0EEE7"/>
-          <text x="432" y="252" text-anchor="middle">55 KM · 1H</text>
+        <g font-family="Archivo, sans-serif" font-size="9.5" font-weight="700">
+          <rect x="232" y="196" width="76" height="16" rx="2" fill="#F0EEE7"/>
+          <text x="270" y="208" text-anchor="middle" fill="#B0442B">65 KM · 1H</text>
+          <rect x="132" y="150" width="76" height="16" rx="2" fill="#F0EEE7"/>
+          <text x="170" y="162" text-anchor="middle" fill="#B0442B">65 KM · 1H</text>
+          <rect x="196" y="266" width="86" height="16" rx="2" fill="#F0EEE7"/>
+          <text x="239" y="278" text-anchor="middle" fill="#B0442B">100 KM · 1H30</text>
+          <rect x="396" y="252" width="76" height="16" rx="2" fill="#F0EEE7"/>
+          <text x="434" y="264" text-anchor="middle" fill="#2C6F7B">55 KM · 1H</text>
         </g>
 
-        <!-- miejsca -->
         <g font-family="Archivo, sans-serif">
-          <!-- Malaga -->
-          <circle cx="330" cy="262" r="10" fill="#17313A"/>
-          <circle cx="330" cy="262" r="3.6" fill="#F0EEE7"/>
-          <text x="346" y="259" font-size="12.5" font-weight="800" fill="#17313A">MÁLAGA</text>
-          <text x="346" y="272" font-size="9" font-weight="600" letter-spacing="1" fill="#78858A">BAZA</text>
+          <circle cx="330" cy="274" r="10" fill="#17313A"/>
+          <circle cx="330" cy="274" r="3.6" fill="#F0EEE7"/>
+          <text x="346" y="271" font-size="12.5" font-weight="800" fill="#17313A">MÁLAGA</text>
+          <text x="346" y="284" font-size="9" font-weight="600" letter-spacing="1" fill="#78858A">BAZA</text>
 
-          <!-- lotnisko -->
-          <circle cx="272" cy="284" r="5" fill="#2C6F7B"/>
-          <text x="262" y="302" text-anchor="end" font-size="9.5" font-weight="700" fill="#2C6F7B">AGP LOTNISKO</text>
+          <circle cx="272" cy="296" r="5" fill="#78858A"/>
+          <text x="262" y="314" text-anchor="end" font-size="9.5" font-weight="700" fill="#78858A">AGP LOTNISKO</text>
 
-          <!-- Caminito -->
-          <circle cx="226" cy="140" r="8" fill="#B0442B"/>
-          <text x="212" y="130" text-anchor="end" font-size="11.5" font-weight="800" fill="#B0442B">CAMINITO DEL REY</text>
-          <text x="212" y="143" text-anchor="end" font-size="9" font-weight="600" letter-spacing=".8" fill="#78858A">EL CHORRO · PIĄTEK</text>
+          <circle cx="226" cy="156" r="8" fill="#B0442B"/>
+          <text x="212" y="146" text-anchor="end" font-size="11.5" font-weight="800" fill="#B0442B">CAMINITO DEL REY</text>
+          <text x="212" y="159" text-anchor="end" font-size="9" font-weight="600" letter-spacing=".8" fill="#78858A">EL CHORRO · SOBOTA 11:20</text>
 
-          <!-- Nerja / Frigiliana -->
-          <circle cx="500" cy="232" r="8" fill="#B0442B"/>
-          <circle cx="486" cy="212" r="5" fill="#B0442B"/>
-          <text x="514" y="222" font-size="11.5" font-weight="800" fill="#B0442B">NERJA</text>
-          <text x="514" y="235" font-size="11.5" font-weight="800" fill="#B0442B">FRIGILIANA</text>
-          <text x="514" y="248" font-size="9" font-weight="600" letter-spacing=".8" fill="#78858A">NIEDZIELA</text>
+          <circle cx="130" cy="206" r="8" fill="#B0442B"/>
+          <text x="116" y="212" text-anchor="end" font-size="11.5" font-weight="800" fill="#B0442B">RONDA</text>
+          <text x="116" y="225" text-anchor="end" font-size="9" font-weight="600" letter-spacing=".8" fill="#78858A">SOBOTA 15:30</text>
 
-          <!-- Plan B -->
-          <circle cx="118" cy="200" r="6" fill="#9AA6A6"/>
-          <text x="106" y="196" text-anchor="end" font-size="10" font-weight="700" fill="#8A9696">RONDA</text>
-          <text x="106" y="208" text-anchor="end" font-size="8.5" font-weight="600" letter-spacing=".6" fill="#9AA6A6">PLAN B · 1H45</text>
+          <circle cx="500" cy="244" r="8" fill="#2C6F7B"/>
+          <circle cx="486" cy="224" r="5" fill="#2C6F7B"/>
+          <text x="514" y="234" font-size="11.5" font-weight="800" fill="#2C6F7B">NERJA</text>
+          <text x="514" y="247" font-size="11.5" font-weight="800" fill="#2C6F7B">FRIGILIANA</text>
+          <text x="514" y="260" font-size="9" font-weight="600" letter-spacing=".8" fill="#78858A">NIEDZIELA</text>
 
-          <circle cx="316" cy="84" r="6" fill="#9AA6A6"/>
-          <text x="330" y="80" font-size="10" font-weight="700" fill="#8A9696">ANTEQUERA · EL TORCAL</text>
-          <text x="330" y="92" font-size="8.5" font-weight="600" letter-spacing=".6" fill="#9AA6A6">PLAN B · 1H</text>
+          <circle cx="316" cy="100" r="6" fill="#9AA6A6"/>
+          <text x="330" y="96" font-size="10" font-weight="700" fill="#8A9696">ANTEQUERA · EL TORCAL</text>
+          <text x="330" y="108" font-size="8.5" font-weight="600" letter-spacing=".6" fill="#9AA6A6">PLAN B · 1H</text>
         </g>
       </svg>
     </div>
     <div>
-      <h2>Dlaczego akurat tam</h2>
-      <p style="margin-top:.6rem;font-size:.97rem;color:var(--ink-2)">Ronda kusi, ale w tym planie byłaby powtórką: po piątku macie już przepaść, urwisko i widok w dół. Trzy dni później to samo wrażenie nie działa drugi raz, a droga zabiera trzy i pół godziny w obie strony.</p>
-      <p style="margin-top:.85rem;font-size:.97rem;color:var(--ink-2)">Frigiliana daje coś, czego w planie jeszcze nie ma: <strong>pueblo blanco</strong>. Bielone uliczki, bugenwilla, mauretański układ zaułków. To jest ta Andaluzja z wyobrażeń, a kanion, muzea i miejska plaża jej nie dostarczą.</p>
-      <p style="margin-top:.85rem;font-size:.97rem;color:var(--ink-2)">Do tego jedziecie <strong>godzinę zamiast dwóch</strong>, więc niedziela zostaje gęsta, ale nie wyczerpująca — a plaże pod klifami Maro są najlepsze w całej prowincji.</p>
+      <h2>Dwa kierunki, dwa charaktery</h2>
+      <p style="margin-top:.6rem;font-size:.97rem;color:var(--ink-2)"><strong>Sobota to pętla na północny zachód</strong> — Málaga, kanion, Ronda i z powrotem. Trzy boki trójkąta zamiast dwóch przejazdów tam i z powrotem: dzięki temu jeden dzień daje dwie rzeczy, których nie da się zobaczyć nigdzie indziej w prowincji.</p>
+      <p style="margin-top:.85rem;font-size:.97rem;color:var(--ink-2)"><strong>Niedziela to prosta linia na wschód</strong> — godzina autostradą wzdłuż morza. Frigiliana daje to, czego nie ma ani kanion, ani miasto: <em>pueblo blanco</em>, bieloną uliczkę pod górę i bugenwillę na ścianie.</p>
+      <p style="margin-top:.85rem;font-size:.97rem;color:var(--ink-2)">Antequera i El Torcal zostają w odwodzie — księżycowy krajobraz wapiennych skał i dolmeny z listy UNESCO, godzina drogi na północ. To plan awaryjny, gdyby sobota się posypała.</p>
     </div>
   </div>
 </section>
@@ -993,11 +1053,11 @@ th:last-child, td:last-child{ padding-right:0; }
     <div class="tl">
       <div class="tl-i"><div class="tl-time">08:30</div><div class="tl-body"><div class="tl-txt">Śniadanie, pakowanie<span class="tl-sub">Resztki z targu na śniadanie, nic się nie marnuje</span></div></div></div>
       <div class="tl-i key"><div class="tl-time">10:45</div><div class="tl-body"><div class="tl-txt">Wykwaterowanie, bagaże do auta<span class="tl-sub">Wymeldowanie do 11:00. Walizki jadą w bagażniku — to jedyny powód, dla którego warto mieć auto ostatniego dnia</span></div></div></div>
-      <div class="tl-i key"><div class="tl-time">11:30</div><div class="tl-body"><div class="tl-txt">Hammam Al Ándalus<span class="tl-sub">Plaza de los Mártires 5. Półtorej godziny w łaźni arabskiej, rezerwacja z góry. Alternatywa: Centre Pompidou albo Carmen Thyssen</span></div></div></div>
-      <div class="tl-i"><div class="tl-time">13:30</div><div class="tl-body"><div class="tl-txt">Ostatni obiad<span class="tl-sub">El Palo albo Pedregalejo — jeszcze jedno espeto na pożegnanie, blisko drogi na lotnisko</span></div></div></div>
+      <div class="tl-i key"><div class="tl-time">11:30</div><div class="tl-body"><div class="tl-txt">Hammam Al Ándalus<span class="tl-sub">Plaza de los Mártires 5. Półtorej godziny w łaźni arabskiej, rezerwacja z góry. Po sobocie nogi to docenią</span></div></div></div>
+      <div class="tl-i"><div class="tl-time">13:30</div><div class="tl-body"><div class="tl-txt">Ostatni obiad<span class="tl-sub">El Palo albo Pedregalejo — jeszcze jedno espeto na pożegnanie</span></div></div></div>
       <div class="tl-i"><div class="tl-time">15:15</div><div class="tl-body"><div class="tl-txt">Muelle Uno i latarnia La Farola<span class="tl-sub">Ostatni spacer nad wodą, kawa, drobne zakupy</span></div></div></div>
       <div class="tl-i"><div class="tl-time">16:30</div><div class="tl-body"><div class="tl-txt">Wyjazd na lotnisko<span class="tl-sub">Tankowanie po drodze — auta oddaje się z pełnym bakiem</span></div></div></div>
-      <div class="tl-i key"><div class="tl-time">17:00</div><div class="tl-body"><div class="tl-txt">Zwrot samochodu<span class="tl-sub">Zróbcie zdjęcia karoserii i licznika przy oddaniu</span></div></div></div>
+      <div class="tl-i key"><div class="tl-time">17:00</div><div class="tl-body"><div class="tl-txt">Zwrot samochodu<span class="tl-sub">Zdjęcia karoserii i licznika przy oddaniu, tak jak przy odbiorze</span></div></div></div>
       <div class="tl-i"><div class="tl-time">17:35</div><div class="tl-body"><div class="tl-txt">Kontrola i strefa wylotów</div></div></div>
       <div class="tl-i key"><div class="tl-time">19:35</div><div class="tl-body"><div class="tl-txt">Wylot do Katowic<span class="tl-sub">Lądowanie około 23:00</span></div></div></div>
     </div>
@@ -1006,10 +1066,11 @@ th:last-child, td:last-child{ padding-right:0; }
       <div class="acard">
         <h4>Ogród botaniczny odpada</h4>
         <p>Jardín La Concepción, który byłby oczywistym wyborem na ten dzień, jest <strong>zamknięty w poniedziałki</strong>. Stąd hammam albo muzeum zamiast ogrodu.</p>
+        <p style="margin-top:.5rem">Alternatywy w zasięgu spaceru: Centre Pompidou przy porcie i Museo Carmen Thyssen.</p>
       </div>
       <div class="acard teal">
-        <h4>Gdyby nie było auta</h4>
-        <p>Wtedy ten dzień wygląda inaczej: bagaże zostawiacie w przechowalni obiektu albo w skrytkach na dworcu María Zambrano, a na lotnisko jedziecie pociągiem podmiejskim C-1 — dwanaście minut, 1,80 € od osoby, odjazdy co dwadzieścia minut.</p>
+        <h4>Gdyby coś się stało z autem</h4>
+        <p>Na lotnisko jedzie pociąg podmiejski C-1 z Málaga Centro-Alameda: dwanaście minut, 1,80 € od osoby, odjazdy co dwadzieścia minut. Bagaże można zostawić w skrytkach na dworcu María Zambrano.</p>
       </div>
       <div class="acard">
         <h4>Bufor czasowy</h4>
@@ -1023,34 +1084,38 @@ th:last-child, td:last-child{ padding-right:0; }
 <section class="sheet" id="rezerwacje">
   <p class="eyebrow">Praktycznie · 1/10</p>
   <h1>Rezerwacje i terminy</h1>
-  <p class="lead">Do wylotu zostało kilka dni, więc kolejność ma znaczenie. Najpierw to, co znika, potem to, co drożeje, na końcu to, co można załatwić na miejscu.</p>
+  <p class="lead">Dwie najważniejsze rzeczy są już załatwione: bilety na Caminito i samochód. Poniżej stan wszystkiego, wraz z jedynym terminem, który jeszcze biegnie.</p>
 
   <div class="tw">
     <table>
       <thead><tr><th>Co</th><th>Kiedy i gdzie</th><th class="num">Koszt</th><th>Status</th></tr></thead>
       <tbody>
-        <tr><td>Caminito del Rey</td><td>Piątek 18.09, wejście 10:20, z przewodnikiem. <strong>caminitodelrey.info</strong> albo GetYourGuide</td><td class="num">18 €/os.</td><td><span class="tag now">Kup dziś</span></td></tr>
-        <tr><td>Samochód</td><td>AGP 17.09 ok. 09:45 → 21.09 ok. 17:00. Porównywarka albo bezpośrednio u wypożyczalni</td><td class="num">170–270 zł</td><td><span class="tag now">Kup dziś</span></td></tr>
-        <tr><td>Parking w Maladze</td><td>Santuario de la Victoria, Plazuela Cristo del Amor. Rezerwacja przez Parclick, karnet z nieograniczonymi wjazdami</td><td class="num">50–75 €</td><td><span class="tag now">Kup dziś</span></td></tr>
-        <tr><td>Kaucja za apartament</td><td>Obiekt pobiera kartą 7 dni przed przyjazdem — czyli teraz. Sprawdzić limit</td><td class="num">100 €</td><td><span class="tag now">Sprawdź</span></td></tr>
-        <tr><td>Hammam Al Ándalus</td><td>Poniedziałek 21.09 przed południem, jeśli chcecie. Rezerwacja imienna na godzinę</td><td class="num">ok. 45 €/os.</td><td><span class="tag opt">Opcja</span></td></tr>
-        <tr><td>Alcazaba i Gibralfaro</td><td>Bez rezerwacji, bilet w kasie. Bilet łączony ważny 48 godzin</td><td class="num">5,50 €/os.</td><td><span class="tag ok">Na miejscu</span></td></tr>
-        <tr><td>Museo Picasso</td><td>Bez rezerwacji poza szczytem sezonu, ale online oszczędza kolejkę</td><td class="num">9 €/os.</td><td><span class="tag ok">Na miejscu</span></td></tr>
-        <tr><td>Dachy katedry</td><td>Sobota, wejścia co godzinę do 18:00. Bilety w kasie katedry</td><td class="num">6 €/os.</td><td><span class="tag ok">Na miejscu</span></td></tr>
-        <tr><td>Cueva de Nerja</td><td>Niedziela rano. Ostatnie wejście 15:30, więc lepiej być wcześnie</td><td class="num">15 €/os.</td><td><span class="tag ok">Na miejscu</span></td></tr>
-        <tr><td>Restauracje</td><td>Nic nie rezerwujemy. Wyjątek: El Tapeo de Cervantes ma osiem stolików, warto zadzwonić w dniu wizyty</td><td class="num">—</td><td><span class="tag ok">Na miejscu</span></td></tr>
+        <tr><td>Caminito del Rey</td><td><strong>Sobota 19.09, wejście 11:20</strong>, z oficjalnym przewodnikiem, po angielsku. Zbiórka przy Control Booth, wejście północne</td><td class="num">zapłacone</td><td><span class="tag ok">Kupione</span></td></tr>
+        <tr><td>Samochód</td><td>Odbiór na lotnisku 17.09, zwrot 21.09 przed odlotem</td><td class="num">zapłacone</td><td><span class="tag ok">Kupione</span></td></tr>
+        <tr><td>Parking w Maladze</td><td>Santuario de la Victoria, Plazuela Cristo del Amor. Karnet z nieograniczonymi wjazdami, rezerwacja przez Parclick albo na miejscu</td><td class="num">50–75 €</td><td><span class="tag now">Do zrobienia</span></td></tr>
+        <tr><td>Kaucja za apartament</td><td>Obiekt pobiera kartą kredytową 7 dni przed przyjazdem — blokada powinna już być widoczna</td><td class="num">100 €</td><td><span class="tag ok">W toku</span></td></tr>
+        <tr><td>Hammam Al Ándalus</td><td>Poniedziałek 21.09 przed południem. Rezerwacja imienna na konkretną godzinę, warto zaklepać przed wylotem</td><td class="num">ok. 45 €/os.</td><td><span class="tag opt">Opcja</span></td></tr>
+        <tr><td>Shuttle przy Caminito</td><td>Sobota, dwa przejazdy. <strong>Tylko gotówka</strong>, nie da się kupić wcześniej</td><td class="num">2×2,50 €/os.</td><td><span class="tag ok">Na miejscu</span></td></tr>
+        <tr><td>Alcazaba i Gibralfaro</td><td>Piątek rano, kasa przy Calle Alcazabilla. Bilet łączony ważny 48 godzin</td><td class="num">5,50 €/os.</td><td><span class="tag ok">Na miejscu</span></td></tr>
+        <tr><td>Dachy katedry</td><td>Piątek po sjeście. Wejścia co godzinę, w dni robocze najwięcej terminów</td><td class="num">6 €/os.</td><td><span class="tag ok">Na miejscu</span></td></tr>
+        <tr><td>Museo Picasso</td><td>Piątek wieczorem, do 19:00. Online oszczędza kolejkę, ale rezerwacja nie jest konieczna</td><td class="num">9 €/os.</td><td><span class="tag ok">Na miejscu</span></td></tr>
+        <tr><td>Ronda: Plaza de Toros</td><td>Sobota po południu. Najstarsza czynna arena w Hiszpanii, wstęp bez rezerwacji</td><td class="num">ok. 9 €/os.</td><td><span class="tag ok">Na miejscu</span></td></tr>
+        <tr><td>Ronda: Casa del Rey Moro</td><td>Ogrody i wykute w skale schody do rzeki. Opcjonalnie, jeśli zostanie czas</td><td class="num">ok. 8 €/os.</td><td><span class="tag opt">Opcja</span></td></tr>
+        <tr><td>Cueva de Nerja</td><td>Niedziela rano. Ostatnie wejście 15:30, więc nie ma sensu zwlekać</td><td class="num">15 €/os.</td><td><span class="tag ok">Na miejscu</span></td></tr>
+        <tr><td>Restauracje</td><td>Nic nie rezerwujemy. Wyjątek: El Tapeo de Cervantes ma kilka stolików, warto zadzwonić w dniu wizyty</td><td class="num">—</td><td><span class="tag ok">Na miejscu</span></td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="note warn">
-    <h4>Jedna rzecz naprawdę krytyczna</h4>
-    <p>Wszystko z tej listy da się kupić później albo zamienić — <strong>poza Caminito</strong>. Obiekt ma dzienny limit wejść, we wrześniu popołudniowe sloty schodzą pierwsze, a bilety na cały sezon poszły do sprzedaży w kwietniu. Jeśli slot 10:20 na piątek jeszcze jest, to jest to rzecz do zrobienia dziś, nie w weekend. Bez niego cały piątek trzeba przepisać.</p>
+    <h4>Jedyny termin, który jeszcze biegnie: piątek 11:20</h4>
+    <p>Bilety na Caminito można <strong>bezpłatnie anulować do piątku 18.09 do godziny 11:20</strong> — dokładnie dobę przed wejściem. Po tej godzinie pieniądze przepadają.</p>
+    <p style="margin-top:.5rem">To ma praktyczne znaczenie: <strong>w piątek rano sprawdźcie prognozę wiatru</strong> na sobotę. Przy silnych porywach obiekt zamyka kładki i zwraca pieniądze sam, ale jeśli sami widzicie, że dzień będzie do niczego, do 11:20 macie wybór. Później już nie.</p>
   </div>
 
   <div class="note">
-    <h4>Jeśli oficjalna strona pokaże brak miejsc</h4>
-    <p>Operatorzy wycieczek trzymają własne pule biletów, niewidoczne w kalendarzu na caminitodelrey.info. Sprawdźcie GetYourGuide i Civitatis, zanim uznacie, że nie ma szans. Anulacje wracają do systemu najczęściej rano, we wtorki i środy.</p>
+    <h4>Parking to ostatnia rzecz do domknięcia</h4>
+    <p>Reszta jest kupiona albo kupuje się w kasie. Garaż przy Plazuela Cristo del Amor bierze karnet wielodniowy z nieograniczonymi wjazdami — to istotne, bo auto wyjeżdża w sobotę i w niedzielę. Da się załatwić na miejscu, ale rezerwacja gwarantuje miejsce i zwykle bywa tańsza.</p>
   </div>
 </section>
 
@@ -1058,34 +1123,41 @@ th:last-child, td:last-child{ padding-right:0; }
 <section class="sheet" id="auto">
   <p class="eyebrow">Praktycznie · 2/10</p>
   <h1>Auto, parking, dojazd</h1>
-  <p class="lead">Samochód bierzecie na cały pobyt. Stoi bezczynnie w sobotę, ale zarabia na siebie w piątek, w niedzielę i ostatniego dnia, kiedy przejmuje rolę przechowalni bagażu.</p>
+  <p class="lead">Samochód macie na cały pobyt i to jest właściwa decyzja: bez niego sobotnia pętla przez kanion i Rondę byłaby niewykonalna. W piątek stoi w garażu, w poniedziałek zastępuje przechowalnię bagażu.</p>
 
   <div class="tiles">
-    <div class="tile"><h3>Najem, 4 doby</h3><span class="amt">170–270 zł</span><p>Realne stawki na te daty: klasa mini od 171 zł, kompakt z automatem około 254 zł. Ceny bazowe — koszt rośnie przy ubezpieczeniu kupowanym przy ladzie.</p></div>
-    <div class="tile"><h3>Parking, 4 doby</h3><span class="amt">50–75 €</span><p>Santuario de la Victoria, trzy minuty od apartamentu. Karnet z nieograniczonymi wjazdami i wyjazdami, rozpoznawanie tablic, czynne całą dobę.</p></div>
-    <div class="tile"><h3>Paliwo, ok. 350 km</h3><span class="amt">35–45 €</span><p>Caminito i powrót to 120 km, Nerja i powrót kolejne 120, reszta to lotnisko i jazda po mieście. Autostrady na tych trasach są bezpłatne.</p></div>
+    <div class="tile"><h3>Przejedziecie</h3><span class="amt">ok. 450 km</span><p>Najwięcej w sobotę — sama pętla Málaga, El Chorro, Ronda i z powrotem to około 230 km. Niedziela dokłada 120, reszta to lotnisko i dojazdy.</p></div>
+    <div class="tile"><h3>Paliwo</h3><span class="amt">35–45 €</span><p>Autostrady na wszystkich trasach z tego planu są bezpłatne. Tankowanie przed zwrotem auta, po drodze na lotnisko.</p></div>
+    <div class="tile"><h3>Parking, 4 doby</h3><span class="amt">50–75 €</span><p>Santuario de la Victoria, trzy minuty od apartamentu. Rozpoznawanie tablic, czynne całą dobę, karnet z nieograniczonymi wjazdami.</p></div>
   </div>
-
-  <h2 style="margin-top:2.2rem">Pułapka, na którą warto uważać</h2>
-  <p style="margin-top:.6rem">Wypożyczalnie w Maladze są tanie w cenie bazowej i odrabiają to przy ladzie. Klasyczne zagrania to <strong>ubezpieczenie od udziału własnego za 25–35 € dziennie</strong> oraz polityka paliwowa „pełny za pusty”, w której płacicie za cały bak po zawyżonej stawce.</p>
-  <p style="margin-top:.85rem">Dwie rzeczy chronią przed tym skutecznie: wybierzcie ofertę z polityką <strong>pełny–pełny</strong>, a ubezpieczenie od udziału własnego kupcie osobno u zewnętrznego ubezpieczyciela przed wyjazdem — kosztuje ułamek tego, co przy ladzie. Blokada na karcie kredytowej i tak zostanie założona, zwykle 900–1 200 €.</p>
 
   <div class="tw">
     <table>
-      <thead><tr><th>Odcinek</th><th>Czas</th><th>Uwagi</th></tr></thead>
+      <thead><tr><th>Odcinek</th><th>Dystans</th><th>Czas</th><th>Uwagi</th></tr></thead>
       <tbody>
-        <tr><td>Lotnisko → Calle Victoria</td><td class="num">25 min</td><td>Do garażu wjazd dozwolony mimo strefy ZBE</td></tr>
-        <tr><td>Málaga → Caminito del Rey</td><td class="num">1h00</td><td>Przez Álora i Ardales, droga górska pod koniec</td></tr>
-        <tr><td>Málaga → Nerja</td><td class="num">1h00</td><td>Autostrada A-7 wzdłuż wybrzeża, bezpłatna</td></tr>
-        <tr><td>Nerja → Frigiliana</td><td class="num">10 min</td><td>Serpentyna pod górę, parking przy wjeździe do miasteczka</td></tr>
-        <tr><td>Málaga → Pedregalejo</td><td class="num">15 min</td><td>W sobotę wieczorem jedziemy taksówką, nie autem</td></tr>
+        <tr><td>Lotnisko → Calle Victoria</td><td class="num">20 km</td><td class="num">25 min</td><td>Do garażu wjazd dozwolony mimo strefy ZBE</td></tr>
+        <tr><td>Málaga → Caminito, sobota</td><td class="num">65 km</td><td class="num">1h05</td><td>Przez Álora i Ardales, ostatni odcinek górski i wąski</td></tr>
+        <tr><td>Caminito → Ronda, sobota</td><td class="num">65 km</td><td class="num">1h05</td><td>A-357 i A-367 przez Ardales, dobra droga</td></tr>
+        <tr><td>Ronda → Málaga, sobota</td><td class="num">100 km</td><td class="num">1h30</td><td>Tą samą stroną przez Ardales. Trasa przez San Pedro jest ładniejsza, ale kręta i dłuższa</td></tr>
+        <tr><td>Málaga → Nerja, niedziela</td><td class="num">55 km</td><td class="num">1h00</td><td>Autostrada A-7 wzdłuż wybrzeża</td></tr>
+        <tr><td>Nerja → Frigiliana</td><td class="num">7 km</td><td class="num">10 min</td><td>Serpentyna pod górę, parking przy wjeździe do miasteczka</td></tr>
+        <tr><td>Málaga → Pedregalejo</td><td class="num">7 km</td><td class="num">15 min</td><td>W piątek wieczorem jedziemy taksówką, nie autem</td></tr>
       </tbody>
     </table>
   </div>
 
+  <h2 style="margin-top:2.2rem">Gdzie zostawić auto poza Malagą</h2>
+  <p style="margin-top:.6rem"><strong>Caminito:</strong> parking przy Centro de Visitantes w Puerto de las Atalayas, około 2 € za dobę. To jedyne sensowne miejsce — stamtąd odjeżdża shuttle i tam wracacie po przejściu. Nie zostawiajcie auta przy El Chorro, bo wyjście z trasy jest po drugiej stronie niż wejście.</p>
+  <p style="margin-top:.85rem"><strong>Ronda:</strong> stare miasto jest wąskie i w dużej części zamknięte dla ruchu. Najprościej wjechać do jednego z podziemnych parkingów przy Alameda del Tajo albo przy Plaza del Socorro — obydwa są kilka minut pieszo od mostu i kosztują 1,50–2 € za godzinę. Krążenie w poszukiwaniu miejsca przy krawężniku to strata czasu, którego w sobotę nie macie.</p>
+
+  <div class="note warn">
+    <h4>Sobota: zabierzcie gotówkę</h4>
+    <p>Shuttle przy Caminito kosztuje <strong>2,50 € od osoby w jedną stronę i przyjmuje wyłącznie gotówkę</strong>. Jedziecie nim dwa razy, więc dla dwóch osób to 10 €. Parking przy Centro de Visitantes też bywa gotówkowy. Miejcie przy sobie 20–30 € drobnymi, zanim ruszycie z Malagi — pod kanionem nie ma bankomatu.</p>
+  </div>
+
   <div class="note sea">
-    <h4>Wersja bez samochodu</h4>
-    <p>Gdyby najem odpadł, plan nadal działa. <strong>Caminito:</strong> pociąg z Málaga Centro-Alameda albo María Zambrano do El Chorro, 40–55 minut, około 6 € — a ponieważ trasa kończy się przy samej stacji, wracacie spod wyjścia bez przesiadek. Trzeba wtedy złapać ranny pociąg i shuttle o 8:30, czyli pobudka około 6:45. <strong>Nerja i Frigiliana:</strong> autobusy ALSA z dworca w Maladze, około 1h15. <strong>Lotnisko:</strong> pociąg C-1, 12 minut, 1,80 €.</p>
+    <h4>Gdyby auto wypadło z gry</h4>
+    <p>Awaria albo problem z wypożyczalnią nie kasuje planu. <strong>Caminito:</strong> pociąg z Málaga Centro-Alameda albo María Zambrano do El Chorro, 40–55 minut, około 6 € — trasa kończy się przy samej stacji, więc wracacie spod wyjścia. Do Rondy tego dnia już nie dojedziecie. <strong>Nerja i Frigiliana:</strong> autobusy ALSA z dworca, około 1h15. <strong>Lotnisko:</strong> pociąg C-1, 12 minut, 1,80 €.</p>
   </div>
 </section>
 
@@ -1143,27 +1215,28 @@ th:last-child, td:last-child{ padding-right:0; }
     <table>
       <thead><tr><th>Pozycja</th><th class="num">Kwota</th><th>Uwagi</th></tr></thead>
       <tbody>
-        <tr><td>Samochód, 4 doby</td><td class="num">170–270 zł</td><td>Cena bazowa, bez ubezpieczenia dokupowanego przy ladzie</td></tr>
+        <tr><td>Samochód i bilety na Caminito</td><td class="num">zapłacone</td><td>Poza budżetem na miejscu</td></tr>
         <tr><td>Parking w centrum</td><td class="num">215–320 zł</td><td>50–75 €, karnet z nieograniczonymi wjazdami</td></tr>
-        <tr><td>Paliwo</td><td class="num">150–195 zł</td><td>Około 350 km, autostrady bezpłatne</td></tr>
-        <tr><td>Caminito del Rey</td><td class="num">185 zł</td><td>2 × 18 € bilet z przewodnikiem, shuttle 5 €, parking 2 €</td></tr>
-        <tr><td>Wstępy</td><td class="num">305 zł</td><td>Alcazaba i Gibralfaro 11 €, Picasso 18 €, dachy katedry 12 €, jaskinia 30 €</td></tr>
+        <tr><td>Paliwo</td><td class="num">150–195 zł</td><td>Około 450 km, autostrady bezpłatne</td></tr>
+        <tr><td>Sobota pod kanionem</td><td class="num">50 zł</td><td>Shuttle 4 × 2,50 € i parking 2 € — <strong>gotówką</strong></td></tr>
+        <tr><td>Wstępy</td><td class="num">385 zł</td><td>Alcazaba i Gibralfaro 11 €, dachy katedry 12 €, Picasso 18 €, arena w Rondzie 18 €, jaskinia 30 €</td></tr>
         <tr><td>Jedzenie, 5 dni</td><td class="num">1 100–1 400 zł</td><td>Śniadania z targu, obiad menú del día, kolacja na tapas</td></tr>
-        <tr><td>Transport lokalny</td><td class="num">120 zł</td><td>Taksówka do Pedregalejo i z powrotem, autobusy</td></tr>
+        <tr><td>Transport lokalny</td><td class="num">120 zł</td><td>Taksówka do Pedregalejo w piątek i z powrotem</td></tr>
+        <tr><td>Parkingi w terenie</td><td class="num">40 zł</td><td>Podziemny parking w Rondzie, postój w Nerji</td></tr>
         <tr><td>Zapas</td><td class="num">250 zł</td><td>Pamiątki, kawa, to czego nie da się przewidzieć</td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="stats" style="margin-top:2rem">
-    <div class="stat"><b>2 500</b><span>Zł minimum, na dwoje</span></div>
-    <div class="stat"><b>3 050</b><span>Zł realnie, na dwoje</span></div>
-    <div class="stat"><b>1 525</b><span>Zł na osobę</span></div>
+    <div class="stat"><b>2 300</b><span>Zł minimum, na dwoje</span></div>
+    <div class="stat"><b>2 800</b><span>Zł realnie, na dwoje</span></div>
+    <div class="stat"><b>1 400</b><span>Zł na osobę</span></div>
     <div class="stat"><b>+390</b><span>Zł, jeśli hammam</span></div>
   </div>
 
   <div class="tiles" style="margin-top:2rem">
-    <div class="tile"><h3>Karta wszędzie</h3><p>Hiszpania jest mocno bezgotówkowa, zbliżeniowo płaci się nawet za kawę. Wyjątki, które trzeba pokryć gotówką, są dokładnie dwa: <strong>shuttle przy Caminito</strong> i część chiringuit na plaży.</p></div>
+    <div class="tile"><h3>Karta wszędzie</h3><p>Hiszpania jest mocno bezgotówkowa, zbliżeniowo płaci się nawet za kawę. Wyjątki, które trzeba pokryć gotówką, są dokładnie dwa: <strong>shuttle przy Caminito w sobotę</strong>, którym jedziecie dwa razy, i część chiringuit na plaży.</p></div>
     <div class="tile"><h3>Gotówki: 100–150 €</h3><p>To wystarczy na cały wyjazd. Wypłacajcie w bankomatach banków — CaixaBank, BBVA, Santander — a nie w żółtych Euronetach, które doliczają prowizję i proponują niekorzystne przeliczenie.</p></div>
     <div class="tile"><h3>Zawsze płaćcie w euro</h3><p>Kiedy terminal zapyta, czy przeliczyć na złotówki, odmawiajcie. Przeliczenie po stronie sprzedawcy jest zawsze gorsze niż kurs Waszego banku. To potrafi być kilka procent od każdej transakcji.</p></div>
   </div>
@@ -1243,8 +1316,8 @@ th:last-child, td:last-child{ padding-right:0; }
 
   <div class="tiles">
     <div class="tile"><h3>Czwartek · wino z beczki</h3><p>Antigua Casa de Guardia po tapas. Pije się na stojąco, zamawia <em>seco</em> albo <em>dulce</em>, a barman kreską na blacie liczy, ile wypiliście.</p></div>
-    <div class="tile"><h3>Sobota · espeto nad wodą</h3><p>Pedregalejo, stolik na piasku, sardynki z ogniska i zimne wino. Najlepszy wieczór wyjazdu — dlatego nie planujemy na niego niczego po.</p></div>
-    <div class="tile"><h3>Niedziela · miasto po ciemku</h3><p>Powrót z Frigiliany około 19:00, kolacja w centrum, potem spacer po Calle Larios i Plaza de la Constitución, kiedy zapalają się światła.</p></div>
+    <div class="tile"><h3>Piątek · espeto nad wodą</h3><p>Pedregalejo, stolik na piasku, sardynki z ogniska i zimne wino. Najlepszy wieczór wyjazdu — dlatego nie planujemy na niego niczego po.</p></div>
+    <div class="tile"><h3>Sobota · Ronda o zmierzchu</h3><p>Nie wieczór w mieście, tylko złota godzina na krawędzi wąwozu. Kolacja wypada dopiero po powrocie, koło dwudziestej drugiej, i ma być krótka.</p></div>
   </div>
 
   <h2 style="margin-top:2.2rem">Do wyboru, jeśli będzie siła</h2>
@@ -1294,7 +1367,7 @@ th:last-child, td:last-child{ padding-right:0; }
 
   <h2 style="margin-top:1.8rem">Konieczne</h2>
   <ul class="checks cols2">
-    <li><strong>Rozchodzone pełne buty</strong> — na Caminito sprawdzają obuwie, klapki i sandały nie przejdą</li>
+    <li><strong>Rozchodzone pełne buty</strong> — na Caminito sprawdzają obuwie, buty odkryte nie przejdą</li>
     <li>Druga para na miasto i wieczory</li>
     <li>Strój kąpielowy razy dwa — jeden nigdy nie zdąży wyschnąć</li>
     <li>Ręcznik szybkoschnący na plażę</li>
@@ -1303,7 +1376,7 @@ th:last-child, td:last-child{ padding-right:0; }
     <li>Butelka na wodę — na trasie kanionu nie ma żadnego punktu z wodą</li>
     <li>Mały plecak dzienny, wąski, bo przejścia na kładkach są ciasne</li>
     <li>Powerbank — nawigacja i zdjęcia rozładują telefon do południa</li>
-    <li>Gotówka 100–150 € na shuttle i chiringuita</li>
+    <li>Gotówka 100–150 €, w tym <strong>20–30 € drobnymi na sobotę</strong> — shuttle bierze tylko gotówkę</li>
     <li>Dokument ze zdjęciem, EKUZ, polisa</li>
     <li>Podstawowe leki — apteki są wszędzie, ale wieczorem tylko dyżurne</li>
   </ul>
@@ -1312,7 +1385,7 @@ th:last-child, td:last-child{ padding-right:0; }
   <ul class="checks cols2">
     <li>Adapter do gniazdek — Hiszpania ma ten sam standard co Polska</li>
     <li>Kask na Caminito — jest w cenie biletu, dostajecie na miejscu</li>
-    <li>Kijki trekkingowe — na kładkach są zabronione</li>
+    <li>Kijki trekkingowe, kijek do selfie i duży plecak — wszystkie trzy są na kładkach zabronione</li>
     <li>Ciepła kurtka — najniższa temperatura to 19° po zmroku</li>
     <li>Ręczniki hotelowe do apartamentu — są w wyposażeniu</li>
     <li>Duże zapasy jedzenia — targ jest piętnaście minut od domu</li>
@@ -1358,11 +1431,12 @@ th:last-child, td:last-child{ padding-right:0; }
 <section class="sheet" id="planb">
   <p class="eyebrow">Plan B</p>
   <h1>Kiedy coś nie wyjdzie</h1>
-  <p class="lead">Plan jest ramą, nie klatką. Trzy punkty stoją nieruchomo, reszta da się przestawiać między dniami bez szkody dla całości.</p>
+  <p class="lead">Plan jest ramą, nie klatką. Cztery punkty stoją nieruchomo, reszta da się przestawiać między dniami bez szkody dla całości.</p>
 
   <h2 style="margin-top:1.8rem">Punkty nieruchome</h2>
   <ul class="checks">
-    <li><strong>Piątek 18.09, 10:20</strong> — Caminito ma slot na godzinę i bilet imienny. Spóźnienie oznacza przepadek</li>
+    <li><strong>Piątek 18.09, 11:20</strong> — ostatni moment na bezpłatną anulację Caminito. Rano sprawdźcie prognozę wiatru na sobotę</li>
+    <li><strong>Sobota 19.09, 11:20</strong> — wejście na kładki. Bilet jest imienny i na godzinę, spóźnienie oznacza przepadek. Na parkingu macie być o 10:20</li>
     <li><strong>Poniedziałek 21.09, 11:00</strong> — wymeldowanie z apartamentu</li>
     <li><strong>Poniedziałek 21.09, 19:35</strong> — samolot nie poczeka</li>
   </ul>
@@ -1372,12 +1446,13 @@ th:last-child, td:last-child{ padding-right:0; }
     <table>
       <thead><tr><th>Scenariusz</th><th>Ruch</th></tr></thead>
       <tbody>
-        <tr><td>Caminito zamknięty przez wiatr</td><td>Pieniądze wracają automatycznie. Piątek przechodzi na <strong>Ronda</strong> — most nad wąwozem, najstarsza arena w Hiszpanii, 1h45 drogi. Alternatywa bliżej: El Torcal i dolmeny w Antequerze, godzina jazdy</td></tr>
-        <tr><td>Deszcz w sobotę</td><td>Zamiana z niedzielą albo dzień muzealny: Centre Pompidou, Carmen Thyssen i Museo Ruso wypełniają całe popołudnie, wszystkie w zasięgu spaceru</td></tr>
-        <tr><td>Deszcz w niedzielę</td><td>Jaskinia w Nerji działa niezależnie od pogody, Frigiliana pod parasolem traci sens. Wtedy lepiej zostać w Maladze i zamienić dni</td></tr>
-        <tr><td>Upał powyżej 32°</td><td>Zwiedzanie przenosi się na przed 12:00 i po 18:00, sjesta wydłuża się do trzech godzin. Alcazaba w południe jest bez cienia</td></tr>
-        <tr><td>Nogi odmawiają po Caminito</td><td>Sobota i tak jest wolna. Można wyciąć Gibralfaro i zostawić samą Alcazabę, a na górę wjechać autobusem linii 35</td></tr>
-        <tr><td>Auto nie wypali</td><td>Caminito pociągiem do El Chorro, Nerja i Frigiliana autobusem ALSA, lotnisko pociągiem C-1. Cały plan działa, tylko wolniej</td></tr>
+        <tr><td>Caminito zamknięty przez wiatr</td><td>Obiekt zamyka kładki sam i zwraca pieniądze. Sobota przechodzi wtedy na <strong>Antequerę i El Torcal</strong> — księżycowy krajobraz wapiennych skał i dolmeny z listy UNESCO, godzina drogi na północ. Ronda zostaje w planie, bo leży po tej samej stronie</td></tr>
+        <tr><td>Sobota okazuje się za ciężka</td><td>Wytnijcie Rondę po wyjściu z kanionu i wróćcie na plażę w Maladze. Ronda przechodzi wtedy na niedzielę zamiast Nerji — to pełnoprawny dzień sam w sobie</td></tr>
+        <tr><td>Deszcz w piątek</td><td>Zamiana z niedzielą albo dzień muzealny: Centre Pompidou, Carmen Thyssen i Museo Ruso wypełniają całe popołudnie, wszystkie w zasięgu spaceru. Bilet na Alcazabę jest ważny 48 godzin, więc da się rozbić na dwa dni</td></tr>
+        <tr><td>Deszcz w niedzielę</td><td>Jaskinia w Nerji działa niezależnie od pogody, ale Frigiliana pod parasolem traci sens. Wtedy lepiej zostać w Maladze i dobrać to, co wypadło z piątku</td></tr>
+        <tr><td>Upał powyżej 32°</td><td>Zwiedzanie przenosi się na przed 12:00 i po 18:00, sjesta wydłuża się do trzech godzin. Alcazaba w południe jest bez cienia, podobnie kładki w kanionie</td></tr>
+        <tr><td>Nogi odmawiają po sobocie</td><td>Niedziela kurczy się do jaskini i plaży, bez Frigiliany. Zatoczki Maro nie wymagają niczego poza zejściem ścieżką</td></tr>
+        <tr><td>Korek albo awaria w drodze do kanionu</td><td>Dzwońcie do GetYourGuide, numer jest na voucherze. Bilety są na konkretną godzinę, ale operator czasem przesuwa na późniejszą grupę, jeśli są miejsca</td></tr>
         <tr><td>Kolejka do zwrotu auta</td><td>Dlatego zwrot jest o 17:00 przy locie o 19:35. Jeśli pójdzie gładko, zostaje godzina na spokojną kawę za kontrolą</td></tr>
       </tbody>
     </table>
@@ -1385,7 +1460,12 @@ th:last-child, td:last-child{ padding-right:0; }
 
   <div class="note">
     <h4>Zasada tasowania</h4>
-    <p>Zamieniajcie <strong>całe dni, nie pojedyncze punkty</strong>. Każdy dzień jest ułożony geograficznie — sobota to jedna pętla piesza, niedziela to jeden wyjazd na wschód. Rozbieranie ich na części mnoży dojazdy i zjada czas, który miał iść na siedzenie przy stole.</p>
+    <p>Zamieniajcie <strong>całe dni, nie pojedyncze punkty</strong>. Każdy dzień jest ułożony geograficznie — piątek to jedna pętla piesza po mieście, sobota to trójkąt na północny zachód, niedziela to prosta na wschód. Rozbieranie ich na części mnoży dojazdy i zjada czas, który miał iść na siedzenie przy stole.</p>
+  </div>
+
+  <div class="note warn">
+    <h4>Czego nie da się przestawić</h4>
+    <p>Sobota jest zablokowana godziną na bilecie. Wszystko inne w tym informatorze można potasować, ale jeśli sobota przepadnie, przepada też Ronda — bo tylko tego dnia jesteście w tamtej części prowincji.</p>
   </div>
 </section>
 
@@ -1395,7 +1475,7 @@ th:last-child, td:last-child{ padding-right:0; }
     <p class="eyebrow">Málaga 2026</p>
     <h1>Do zobaczenia<br>przy bramce</h1>
     <p style="max-width:52ch">Ten plan można przeczytać sto razy, a i tak miasto zagra po swojemu: coś będzie zamknięte, coś zachwyci mocniej, niż zapowiadał informator, a najlepszy wieczór wyjazdu okaże się ten, którego tu nie ma. Rama jest po to, żeby się o nią opierać, nie żeby się jej kurczowo trzymać.</p>
-    <p style="max-width:52ch">Najważniejsze zdanie tego dokumentu brzmi: kupcie bilety na Caminito.</p>
+    <p style="max-width:52ch">Najważniejsze zdanie tego dokumentu brzmi: w sobotę bądźcie na parkingu o dziesiątej dwadzieścia. Reszta się ułoży.</p>
     <div class="strip">
       Victoria · Merced · Alcazaba · Gibralfaro · Atarazanas · Soho · Malagueta · El Chorro · Ardales · Pedregalejo · Nerja · Frigiliana · Maro
     </div>
